@@ -107,11 +107,12 @@ body {
    margin: 0;
    padding: 0;
    box-sizing: border-box;
+   background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
 }
 .App {
    display: grid;
    grid-auto-flow: row;
-   grid-template-rows: 3vh 72vh 16vh 9vh;
+   grid-template-rows: 5vh 72vh 16vh 7vh;
    grid-template-columns: 0.5fr 2fr 6fr 4fr 0.5fr;
    grid-template-areas:
       "header header header header header"
@@ -124,11 +125,12 @@ header {
    display: flex;
    justify-content: center;
    align-items: center;
-   background-color: rgb(255, 255, 255);
    grid-area: header;
-   margin: 0.5rem;
+   margin: 1rem;
 }
-
+header h1 {
+   font-style: italic;
+}
 nav {
    display: flex;
    flex-direction: column;
@@ -139,23 +141,24 @@ nav {
 
 main {
    display: grid;
+   /* margin-right: 0.5rem; */
    grid-auto-flow: column;
    grid-template-columns: 3fr 4fr;
    grid-area: main;
 }
 
 footer {
-   background-color: black;
    grid-area: footer;
 }
 
 .panel {
    display: flex;
+   margin-right: 0.8rem;
    flex-direction: column;
    align-items: center;
    justify-content: center;
    height: 100%;
-   background-color: yellow;
+   border: 1px dotted black;
 }
 
 .words {
@@ -164,20 +167,20 @@ footer {
    align-items: center;
    justify-content: center;
    height: 100%;
-   background-color: blue;
+   border: 1px dotted black;
 }
 
 .card {
    display: grid;
    grid-template-columns: 1fr 3fr;
    grid-template-rows: 10vh 30vh;
+   background-color: transparent;
 }
 
 .results,
 .icon {
    margin: 0.5rem;
    padding: 0.5rem;
-   background-color: white;
    height: 45%;
    width: 90%;
 }
@@ -204,22 +207,25 @@ footer {
    justify-content: space-around;
    height: 100%;
    width: 100%;
-   border: 2px solid red;
+   /* border: 2px solid black; */
 }
 
 .boards .good,
 .boards .bad {
-   width: 100%;
-   height: 90%;
+   width: 60%;
+   border-radius: 5px;
+   height: 45%;
    padding: 0.5rem;
    margin: 1rem;
 }
 .good {
-   background-color: rgb(123, 255, 123);
+   /* background-color: rgb(123, 255, 123); */
+   border: 1px solid #333;
 }
 
 .bad {
-   background-color: rgb(255, 73, 73);
+   /* background-color: rgb(255, 73, 73); */
+   border: 1px solid #333;
 }
 
 .boards .good span,
@@ -232,7 +238,7 @@ footer {
    height: 100%;
    width: 100%;
    font-size: 6rem;
-   color: white;
+   color: #333;
 }
 
 .card1,
@@ -240,7 +246,6 @@ footer {
    margin: 3rem 1rem 1rem 1rem;
    /* border-radius: 5px; */
    padding: 1rem;
-   background-color: white;
    height: 35%;
    width: 80%;
    display: flex;
@@ -257,46 +262,73 @@ footer {
 .icon .png {
    height: 90%;
    width: 90%;
-   background-color: yellowgreen;
+   border: 1px dotted #333;
 }
 
 .submit {
    display: flex;
    align-items: center;
    justify-content: center;
-   background-color: white;
+   border: 1px solid #333;
+   border-radius: 5px;
    height: 5%;
-   width: 70%;
-   padding: 1rem;
-   margin: 2rem;
+   width: 80%;
+   padding: 0.5rem;
+   margin: 2rem 1rem;
 }
 
 .input {
-   background-color: green;
+   background-color: transparent;
    width: 80%;
-   height: 100%;
+   height: 25%;
 }
 
 .btn {
-   background-color: red;
-   width: 20%;
+   display: flex;
+   margin: 1rem;
+   justify-content: center;
+   align-items: center;
+   background-color: #333;
+   border-radius: 5px;
+   color: white;
+   width: 90%;
    height: 100%;
+   font-size: 1.5rem;
+   transition: linear 0.2s;
+}
+
+.btn:hover {
+   color: white;
+   background-color: rgb(73, 206, 73);
+}
+
+.btn h1 {
+   margin: 1rem;
+   padding: 2rem 1rem;
+   text-transform: uppercase;
+   font-weight: 700;
 }
 
 .logo {
    display: flex;
    text-align: center;
    justify-content: center;
+   margin-bottom: 0.8rem;
    align-items: center;
-   border: 1px solid #333;
+   border: 1px dotted #333;
    height: 50%;
    width: 90%;
 }
 
 ul {
-   border: 1px solid #333;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   align-items: center;
+   border: 1px dotted #333;
    height: 100%;
    width: 90%;
+   /* border: 2px solid green; */
 }
 
 li {
@@ -338,10 +370,6 @@ ul li a {
    line-height: 1.3rem;
 } */
 
-ul li a:hover {
-   color: rgb(0, 0, 0);
-}
-
 .card1,
 .card2 {
    display: flex;
@@ -363,20 +391,32 @@ ul li a:hover {
 .card1 .bar,
 .card2 .bar {
    display: flex;
+   margin-bottom: 0.5rem;
    flex-direction: row;
+   border-radius: 5px;
    justify-content: space-around;
    align-items: center;
    height: 20%;
-   border: 2px solid black;
+   border: 1px solid #333;
 }
 .card1 .word1,
 .card2 .word2 {
    height: 80%;
-   border: 2px solid salmon;
+   border-radius: 5px;
+   border: 1px solid #333;
 }
 
 .card1 .word1 p,
 .card2 .word2 p {
    font-size: 3rem;
    text-align: center;
+}
+
+footer h1 {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100%;
+   color: rgb(77, 77, 77);
+   font-size: 1.3rem;
 }

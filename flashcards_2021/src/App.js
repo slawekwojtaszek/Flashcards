@@ -12,7 +12,7 @@ function App() {
    return (
       <div className='App'>
          <header>
-            <h1>This is a test message</h1>
+            <h1>"The limits of my language mean the limits of my world."</h1>
          </header>
          <nav>
             <div className='logo'>LOGO</div>
@@ -109,16 +109,25 @@ function App() {
                      <div className='lang'>English</div>
                   </div>
                   <div className='word2'>
-                     <p>INPUT....</p>
+                     <input
+                        className='input'
+                        type='text'
+                        placeholder='Add your translation here'
+                        id='fname'
+                        name='fname'
+                     />
                   </div>
                </div>
                <div className='submit'>
-                  <div className='input'></div>
-                  <div className='btn'></div>
+                  <div className='btn'>
+                     <h1>Check Translation</h1>
+                  </div>
                </div>
             </section>
          </main>
-         <footer></footer>
+         <footer>
+            <h1>Flashcards 2021</h1>
+         </footer>
       </div>
    );
 }
