@@ -1,12 +1,118 @@
-body {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
    margin: 0;
    padding: 0;
+   border: 0;
+   outline: 0;
+   font-weight: inherit;
+   font-style: inherit;
+   font-size: 100%;
+   font-family: inherit;
+   vertical-align: baseline;
+}
+/* remember to define focus styles! */
+:focus {
+   outline: 0;
+}
+body {
+   line-height: 1;
+   color: black;
+   background: white;
+   box-sizing: border-box;
+}
+ol,
+ul {
+   list-style: none;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+   border-collapse: separate;
+   border-spacing: 0;
+}
+caption,
+th,
+td {
+   text-align: left;
+   font-weight: normal;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+   content: "";
+}
+blockquote,
+q {
+   quotes: "" "";
+}
+
+body {
+   font-family: "Kanit", sans-serif;
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
 }
 .App {
    display: grid;
    grid-auto-flow: row;
-   grid-template-rows: 4vh 80vh 10vh 6vh;
-   grid-template-columns: 1fr 3fr 7fr 10fr 1fr;
+   grid-template-rows: 3vh 72vh 16vh 9vh;
+   grid-template-columns: 0.5fr 2fr 6fr 4fr 0.5fr;
    grid-template-areas:
       "header header header header header"
       ". nav main main . "
@@ -15,21 +121,262 @@ body {
 }
 
 header {
-   background-color: red;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: rgb(255, 255, 255);
    grid-area: header;
+   margin: 0.5rem;
 }
 
 nav {
-   background-color: greenyellow;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: space-around;
    grid-area: nav;
 }
 
 main {
-   background-color: pink;
+   display: grid;
+   grid-auto-flow: column;
+   grid-template-columns: 3fr 4fr;
    grid-area: main;
 }
 
 footer {
    background-color: black;
    grid-area: footer;
+}
+
+.panel {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 100%;
+   background-color: yellow;
+}
+
+.words {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 100%;
+   background-color: blue;
+}
+
+.card {
+   display: grid;
+   grid-template-columns: 1fr 3fr;
+   grid-template-rows: 10vh 30vh;
+}
+
+.results,
+.icon {
+   margin: 0.5rem;
+   padding: 0.5rem;
+   background-color: white;
+   height: 45%;
+   width: 90%;
+}
+
+.results {
+   flex-direction: column;
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+}
+
+.headline {
+   display: flex;
+   align-self: center;
+   justify-content: center;
+   height: 10%;
+   text-align: center;
+   font-size: 2rem;
+}
+
+.boards {
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+   height: 100%;
+   width: 100%;
+   border: 2px solid red;
+}
+
+.boards .good,
+.boards .bad {
+   width: 100%;
+   height: 90%;
+   padding: 0.5rem;
+   margin: 1rem;
+}
+.good {
+   background-color: rgb(123, 255, 123);
+}
+
+.bad {
+   background-color: rgb(255, 73, 73);
+}
+
+.boards .good span,
+.boards .bad span {
+   display: flex;
+   text-align: center;
+   flex-direction: column;
+   align-self: center;
+   justify-content: center;
+   height: 100%;
+   width: 100%;
+   font-size: 6rem;
+   color: white;
+}
+
+.card1,
+.card2 {
+   margin: 3rem 1rem 1rem 1rem;
+   /* border-radius: 5px; */
+   padding: 1rem;
+   background-color: white;
+   height: 35%;
+   width: 80%;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+}
+
+.icon {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.icon .png {
+   height: 90%;
+   width: 90%;
+   background-color: yellowgreen;
+}
+
+.submit {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: white;
+   height: 5%;
+   width: 70%;
+   padding: 1rem;
+   margin: 2rem;
+}
+
+.input {
+   background-color: green;
+   width: 80%;
+   height: 100%;
+}
+
+.btn {
+   background-color: red;
+   width: 20%;
+   height: 100%;
+}
+
+.logo {
+   display: flex;
+   text-align: center;
+   justify-content: center;
+   align-items: center;
+   border: 1px solid #333;
+   height: 50%;
+   width: 90%;
+}
+
+ul {
+   border: 1px solid #333;
+   height: 100%;
+   width: 90%;
+}
+
+li {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin: 1rem 2rem 1rem 2rem;
+   /* padding: 1rem 2rem 1rem 2rem; */
+}
+
+img {
+   display: flex;
+   align-content: center;
+   justify-content: center;
+   height: 35px;
+   width: 35px;
+}
+
+ul li a {
+   margin: 0.5rem 1rem;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 100%;
+   list-style: none;
+   width: 100%;
+   font-size: 1.3rem;
+   text-decoration: none;
+   text-align: center;
+   color: rgb(77, 77, 77);
+   /* border: 2px solid red; */
+}
+
+/* ul li a.menuelement {
+   display: block;
+   color: slateblue;
+   height: 100%;
+   width: 100%;
+   line-height: 1.3rem;
+} */
+
+ul li a:hover {
+   color: rgb(0, 0, 0);
+}
+
+.card1,
+.card2 {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: space-around;
+}
+
+.card1 .bar,
+.card1 .word1,
+.card2 .bar,
+.card2 .word2 {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.card1 .bar,
+.card2 .bar {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+   align-items: center;
+   height: 20%;
+   border: 2px solid black;
+}
+.card1 .word1,
+.card2 .word2 {
+   height: 80%;
+   border: 2px solid salmon;
+}
+
+.card1 .word1 p,
+.card2 .word2 p {
+   font-size: 3rem;
+   text-align: center;
 }
