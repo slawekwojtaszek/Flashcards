@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
+import ErrorPopUp from "./components/ErrorPopUp";
 import spain from "./png/002-spain.png";
 import england from "./png/007-england.png";
 import reset from "./png/006-circular-refreshment-arrow.png";
@@ -9,71 +10,135 @@ import help from "./png/003-info.png";
 import esFlag from "./png/001-spain.png";
 import enFlag from "./png/002-united-kingdom.png";
 import night from "./png/001-night-mode.png";
-
-let nightVar = false;
+import house from "./png/001-house.png";
+import apple from "./png/001-apple.png";
+import sun from "./png/002-sun.png";
 
 let url = "https://css-tricks.com/snippets/css/a-guide-to-flexbox/";
-
+let flag = true;
 let words = [
    {
-      en: "Casa",
-      es: "uno",
+      es: "casa",
+      en: "house",
       id: 1,
+      icon: house,
    },
    {
-      en: "Su Casa",
-      es: "dos",
+      es: "manzana",
+      en: "apple",
       id: 2,
+      icon: apple,
    },
    {
-      en: "Me Casa",
-      es: "tres",
+      es: "sol",
+      en: "sun",
       id: 3,
+      icon: sun,
+   },
+   {
+      es: "uno",
+      en: "one",
+      id: 4,
+      icon: sun,
    },
 ];
 
 function App() {
+   const arrEs = [];
+   const arrEn = [];
+   const arrIcon = [];
    const [input, setInput] = useState("");
    const [number, setNumber] = useState(0);
+   const [wordEs, setWordEs] = useState(null);
+   const [wordEn, setWordEn] = useState(null);
+   const [seen, setSeen] = useState(false);
 
-   const generateRandomNumber = () => {
+   const [icon, setIcon] = useState(undefined);
+   const [correct, setCorret] = useState(0);
+   const [skipped, setSkipped] = useState(0);
+   const [wrong, setWrong] = useState(0);
+
+   // const capitalizeWord = (word) => {
+   //    return word.charAt(0).toUpperCase() + word.slice(1);
+   // };
+
+   // const handleWord = () => {
+   //    const random = Math.floor(Math.random() * words.length);
+
+   //    setWord((word) => words[number].es);
+   //    setIcon((icon) => words[number].icon);
+   //    console.log(`przed handleWord ${number}`);
+   //    setNumber((number) => random);
+   // };
+
+   const togglePop = () => {
+      setSeen((seen) => !seen);
+   };
+
+   const handleChange = (e) => {
+      let myInput = e.target.value;
+      // myInput = myInput.toLowerCase();
+      setInput((input) => myInput);
+   };
+
+   const handleScore = () => {
+      if (wordEn === input) {
+         setCorret((correct) => correct + 1);
+         console.log(wordEn);
+      } else if (input !== wordEn) {
+         setWrong((wrong) => wrong + 1);
+      }
+   };
+
+   const generateNumber = () => {
       const random = Math.floor(Math.random() * words.length);
       setNumber((number) => random);
    };
-   // generateRandomNumber();
 
-   // const hadnleWord = () => {
-   //    const enWords = words[number].en;
-   //    console.log(enWords);
-   // };
+   const finalResult = words.map((item) => {
+      const en = item.en;
+      const es = item.es;
+      const icon = item.icon;
 
-   // const checkMyInput = () => {
-   //    console.log(words);
-   //    hadnleWord();
-   // };
+      arrEn.push(en);
+      arrEs.push(es);
+      arrIcon.push(icon);
 
-   const handleChange = (e) => {
-      generateRandomNumber();
-      setInput((input) => e.target.value);
-      console.log(words[number].en);
+      return arrEn + arrEs + arrIcon;
+   });
+
+   const handleWord = () => {
+      generateNumber();
+      setWordEs((wordEs) => arrEs[number]);
+      setWordEn((wordEn) => arrEn[number]);
+      setIcon((icon) => arrIcon[number]);
+      console.log(wordEn);
+      flag = false;
    };
 
-   const nightMode = () => {
-      nightVar = !nightVar;
-      console.log(nightVar);
-   };
+   console.log(arrEs, arrEn);
 
-   let classDark = "night";
-   let classBright = "App";
+   const startApp = (e) => {
+      if (flag) {
+         return handleWord();
+      } else if (input === "") {
+         return togglePop();
+      }
+      handleScore();
+      setInput((input) => "");
+   };
 
    return (
-      <div className={nightVar ? classDark : classBright}>
+      <div className='App'>
          <div className='circle1'></div>
          <div className='circle2'></div>
          <header>
             <h1>"The limits of my language mean the limits of my world."</h1>
          </header>
          <nav>
+            <div className='btn' onClick={togglePop}></div>
+            {seen ? <ErrorPopUp toggle={togglePop} /> : null}
+
             <div className='logo glass2'>Flashcards</div>
             <ul className='glass2'>
                <li>
@@ -95,7 +160,7 @@ function App() {
                   </a>
                </li>
                <li>
-                  <a href={url}>
+                  <a>
                      {" "}
                      <img src={skip} alt='' />{" "}
                   </a>
@@ -131,11 +196,11 @@ function App() {
                   </a>
                </li>
                <li>
-                  <a onClick={nightMode} href='#'>
+                  <a href='#'>
                      {" "}
                      <img src={night} alt='' />{" "}
                   </a>
-                  <a onClick={nightMode} className='menuelement' href='#'>
+                  <a className='menuelement' href='#'>
                      Night Mode
                   </a>
                </li>
@@ -148,26 +213,26 @@ function App() {
                      <div className='singleboard'>
                         <p>Correct</p>
                         <div className='good'>
-                           <span>3</span>
+                           <span>{correct}</span>
                         </div>
                      </div>
                      <div className='singleboard'>
                         <p>Skipped</p>
                         <div className='skipped'>
-                           <span>0</span>
+                           <span>{skipped}</span>
                         </div>
                      </div>
                      <div className='singleboard'>
                         <p>Wrong</p>
                         <div className='bad'>
-                           <span>0</span>
+                           <span>{wrong}</span>
                         </div>
                      </div>
                   </div>
                </div>
                <div className='icon'>
                   <div className='png'>
-                     <h1>?</h1>
+                     {number ? <img src={icon} alt='' /> : ""}
                   </div>
                </div>
             </section>
@@ -180,7 +245,7 @@ function App() {
                      <div className='lang'>Spanish</div>
                   </div>
                   <div className='word1'>
-                     <p>{words[number].en}</p>
+                     <p>{wordEs ? wordEs : "Press Start"}</p>
                   </div>
                </div>
                <div className='card2'>
@@ -203,8 +268,8 @@ function App() {
                   </div>
                </div>
                <div className='submit'>
-                  <button onSubmit={handleChange} onClick={handleChange}>
-                     Check Translation
+                  <button onClick={startApp}>
+                     {wordEs ? "V E R I F Y" : "S T A R T "}
                   </button>
                </div>
             </section>
