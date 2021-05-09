@@ -75,6 +75,7 @@ body {
    color: black;
    background: white;
    box-sizing: border-box;
+   overflow: hidden;
 }
 ol,
 ul {
@@ -107,13 +108,24 @@ body {
    margin: 0;
    padding: 0;
    box-sizing: border-box;
-   background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+   /* background-image: linear-gradient(to top, #dfe9f3 0%, white 100%); */
+
+   background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
 }
+
+.night {
+   background-color: black;
+}
+
+/* ALL ABOVE RESET */
+
+/* GRID */
+
 .App {
    display: grid;
    grid-auto-flow: row;
    grid-template-rows: 5vh 72vh 16vh 7vh;
-   grid-template-columns: 0.5fr 2fr 6fr 4fr 0.5fr;
+   grid-template-columns: 2fr 0.5fr 4fr 4fr 2fr;
    grid-template-areas:
       "header header header header header"
       ". nav main main . "
@@ -130,6 +142,9 @@ header {
 }
 header h1 {
    font-style: italic;
+   color: white;
+   font-weight: 700;
+   font-size: 0.9rem;
 }
 nav {
    display: flex;
@@ -143,7 +158,7 @@ main {
    display: grid;
    /* margin-right: 0.5rem; */
    grid-auto-flow: column;
-   grid-template-columns: 3fr 4fr;
+   grid-template-columns: 2fr 4fr;
    grid-area: main;
 }
 
@@ -151,163 +166,7 @@ footer {
    grid-area: footer;
 }
 
-.panel {
-   display: flex;
-   margin-right: 0.8rem;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   height: 100%;
-   border: 1px dotted black;
-}
-
-.words {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   height: 100%;
-   border: 1px dotted black;
-}
-
-.card {
-   display: grid;
-   grid-template-columns: 1fr 3fr;
-   grid-template-rows: 10vh 30vh;
-   background-color: transparent;
-}
-
-.results,
-.icon {
-   margin: 0.5rem;
-   padding: 0.5rem;
-   height: 45%;
-   width: 90%;
-}
-
-.results {
-   flex-direction: column;
-   display: flex;
-   align-items: center;
-   justify-content: space-around;
-}
-
-.headline {
-   display: flex;
-   align-self: center;
-   justify-content: center;
-   height: 10%;
-   text-align: center;
-   font-size: 2rem;
-}
-
-.boards {
-   display: flex;
-   align-items: center;
-   justify-content: space-around;
-   height: 100%;
-   width: 100%;
-   /* border: 2px solid black; */
-}
-
-.boards .good,
-.boards .bad {
-   width: 60%;
-   border-radius: 5px;
-   height: 45%;
-   padding: 0.5rem;
-   margin: 1rem;
-}
-.good {
-   /* background-color: rgb(123, 255, 123); */
-   border: 1px solid #333;
-}
-
-.bad {
-   /* background-color: rgb(255, 73, 73); */
-   border: 1px solid #333;
-}
-
-.boards .good span,
-.boards .bad span {
-   display: flex;
-   text-align: center;
-   flex-direction: column;
-   align-self: center;
-   justify-content: center;
-   height: 100%;
-   width: 100%;
-   font-size: 6rem;
-   color: #333;
-}
-
-.card1,
-.card2 {
-   margin: 3rem 1rem 1rem 1rem;
-   /* border-radius: 5px; */
-   padding: 1rem;
-   height: 35%;
-   width: 80%;
-   display: flex;
-   justify-content: space-around;
-   align-items: center;
-}
-
-.icon {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-}
-
-.icon .png {
-   height: 90%;
-   width: 90%;
-   border: 1px dotted #333;
-}
-
-.submit {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   border: 1px solid #333;
-   border-radius: 5px;
-   height: 5%;
-   width: 80%;
-   padding: 0.5rem;
-   margin: 2rem 1rem;
-}
-
-.input {
-   background-color: transparent;
-   width: 80%;
-   height: 25%;
-}
-
-.btn {
-   display: flex;
-   margin: 1rem;
-   justify-content: center;
-   align-items: center;
-   background-color: #333;
-   border-radius: 5px;
-   color: white;
-   width: 90%;
-   height: 100%;
-   font-size: 1.5rem;
-   transition: linear 0.2s;
-}
-
-.btn:hover {
-   color: white;
-   background-color: rgb(73, 206, 73);
-}
-
-.btn h1 {
-   margin: 1rem;
-   padding: 2rem 1rem;
-   text-transform: uppercase;
-   font-weight: 700;
-}
+/* MENU */
 
 .logo {
    display: flex;
@@ -315,7 +174,7 @@ footer {
    justify-content: center;
    margin-bottom: 0.8rem;
    align-items: center;
-   border: 1px dotted #333;
+
    height: 50%;
    width: 90%;
 }
@@ -324,11 +183,8 @@ ul {
    display: flex;
    justify-content: center;
    flex-direction: column;
-   align-items: center;
-   border: 1px dotted #333;
    height: 100%;
    width: 90%;
-   /* border: 2px solid green; */
 }
 
 li {
@@ -336,7 +192,6 @@ li {
    align-items: center;
    justify-content: space-between;
    margin: 1rem 2rem 1rem 2rem;
-   /* padding: 1rem 2rem 1rem 2rem; */
 }
 
 img {
@@ -359,16 +214,219 @@ ul li a {
    text-decoration: none;
    text-align: center;
    color: rgb(77, 77, 77);
-   /* border: 2px solid red; */
 }
 
-/* ul li a.menuelement {
-   display: block;
-   color: slateblue;
+/* SCORE PANEL */
+
+.panel {
+   display: flex;
+   margin-right: 0.8rem;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 100%;
+}
+
+.results,
+.icon {
+   margin: 0.5rem;
+   padding: 0.5rem;
+   height: 45%;
+   width: 90%;
+}
+
+.results {
+   flex-direction: column;
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+}
+
+.boards {
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   justify-content: space-around;
    height: 100%;
    width: 100%;
-   line-height: 1.3rem;
-} */
+   /* border: 2px solid black; */
+}
+
+.boards .singleboard {
+   width: 90%;
+   border-radius: 5px;
+   height: 100%;
+   margin: 1rem;
+   background: linear-gradient(
+      to right bottom,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.3)
+   );
+}
+.boards .singleboard p {
+   color: #555;
+   font-size: 0.8rem;
+
+   text-align: center;
+   padding: 0.2rem;
+}
+.good {
+   background-color: rgb(123, 255, 123);
+   height: 100%;
+}
+
+.bad {
+   background-color: rgb(255, 73, 73);
+   height: 100%;
+}
+
+.skipped {
+   background-color: rgb(255, 222, 73);
+   height: 100%;
+}
+
+.boards .good span,
+.boards .bad span,
+.boards .skipped span {
+   display: flex;
+   text-align: center;
+   flex-direction: column;
+   align-self: center;
+   justify-content: center;
+   height: 100%;
+   width: 100%;
+   font-size: 3rem;
+   font-weight: 400;
+   color: white;
+}
+
+.icon {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.icon .png {
+   height: 90%;
+   width: 90%;
+   border: 1px solid white;
+}
+
+/* WORDS PANEL */
+
+.words {
+   display: flex;
+
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 100%;
+}
+
+.word1 {
+   display: flex;
+   max-width: 100%;
+   justify-content: center;
+   align-items: center;
+}
+
+.card1 .word1,
+.card2 .word2 {
+   height: 80%;
+   border-radius: 5px;
+   border: 3px solid white;
+}
+
+.card1 .word1 p,
+.card2 .word2 p {
+   width: 90%;
+   max-width: 100%;
+   padding: 0.3rem;
+   word-break: break-all;
+   font-size: 3rem;
+   color: rgb(255, 70, 126);
+   font-weight: 700;
+
+   text-align: center;
+   border: 2px solid white;
+}
+
+.card {
+   display: grid;
+   grid-template-columns: 1fr 3fr;
+   grid-template-rows: 10vh 30vh;
+   background-color: transparent;
+}
+
+.card1,
+.card2 {
+   margin: 3rem 1rem 1rem 1rem;
+   padding: 1rem;
+   height: 35%;
+   width: 80%;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+}
+
+.submit {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border: 1px solid ridge;
+   border-radius: 5px;
+   height: 5%;
+   width: 80%;
+   padding: 0.5rem;
+   margin: 2rem 1rem;
+}
+
+button {
+   background: none;
+   color: inherit;
+   border: none;
+   padding: 0;
+   font: inherit;
+   cursor: pointer;
+   outline: inherit;
+   display: flex;
+   margin: 1rem;
+   justify-content: center;
+   align-items: center;
+   border-radius: 5px;
+   color: #555;
+   width: 90%;
+   height: 100%;
+   font-size: 1rem;
+   font-weight: 700;
+   transition: linear 0.2s;
+   box-shadow: none;
+   outline: inherit;
+   background: linear-gradient(
+      to right bottom,
+      rgba(245, 245, 245, 0.8),
+      rgba(255, 255, 255, 0.5)
+   );
+   z-index: 0;
+   backdrop-filter: blur(0.7rem);
+}
+
+.input {
+   background-color: transparent;
+   width: 90%;
+   height: 35%;
+   border: 2px solid white;
+}
+
+.input::placeholder {
+   display: flex;
+   height: 100%;
+   justify-content: center;
+   align-items: center;
+   color: white;
+   font-size: 1rem;
+   font-weight: 300;
+}
 
 .card1,
 .card2 {
@@ -394,29 +452,92 @@ ul li a {
    margin-bottom: 0.5rem;
    flex-direction: row;
    border-radius: 5px;
-   justify-content: space-around;
+   justify-content: space-between;
    align-items: center;
    height: 20%;
-   border: 1px solid #333;
-}
-.card1 .word1,
-.card2 .word2 {
-   height: 80%;
-   border-radius: 5px;
-   border: 1px solid #333;
+   border: 3px solid white;
 }
 
-.card1 .word1 p,
-.card2 .word2 p {
-   font-size: 3rem;
-   text-align: center;
+.flag {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 100%;
+   width: 20%;
 }
+
+.lang {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 100%;
+
+   color: #555;
+   width: 40%;
+}
+
+/* FOOTER */
 
 footer h1 {
    display: flex;
    justify-content: center;
    align-items: center;
    height: 100%;
-   color: rgb(77, 77, 77);
-   font-size: 1.3rem;
+   color: white;
+   font-weight: 700;
+   font-size: 1rem;
+}
+
+/* GLASSMORPHISM */
+
+.glass {
+   background: linear-gradient(
+      to right bottom,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.5)
+   );
+   border-radius: 1rem;
+   z-index: 0;
+   backdrop-filter: blur(0.2rem);
+}
+
+.glass2 {
+   background: linear-gradient(
+      to right bottom,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.4)
+   );
+   border-radius: 1rem;
+   z-index: 0;
+   backdrop-filter: blur(0.2rem);
+}
+
+.circle1,
+.circle2 {
+   position: absolute;
+   background: white;
+   background: linear-gradient(
+      to right bottom,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.3)
+   );
+
+   border-radius: 50%;
+}
+
+.circle1 {
+   height: 20rem;
+   width: 20rem;
+   top: 3%;
+   right: 5%;
+   background-color: rgb(255, 43, 135);
+}
+
+.circle2 {
+   background-color: rgb(255, 43, 135);
+   height: 40rem;
+   width: 40rem;
+   bottom: -7%;
+   left: -7%;
+   z-index: -2;
 }
