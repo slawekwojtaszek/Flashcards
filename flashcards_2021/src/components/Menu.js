@@ -14,16 +14,16 @@ import reset from "../png/006-circular-refreshment-arrow.png";
 import { MenuElement } from "./MenuElement";
 let url = "https://css-tricks.com/snippets/css/a-guide-to-flexbox/";
 
-export const Menu = () => {
+export const Menu = ({ onClick }) => {
    return (
       <nav>
          <div className='logo glass2'>Flashcards</div>
          <ul className='glass2'>
             <MenuElement url={url} src={england} text='England' />
             <MenuElement url={url} src={spain} text='Spain' />
-            <MenuElement url={url} src={skip} text='Skip Word' />
+            <MenuElement onClick={onClick} src={skip} text='Skip Word' />
             <MenuElement url={url} src={add} text='Add Word' />
-            <MenuElement url={url} src={help} text='Help' />
+            <MenuElement src={help} text='Help' />
             <MenuElement url={url} src={night} text='Night Mode' />
          </ul>
       </nav>

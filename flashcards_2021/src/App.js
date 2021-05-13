@@ -26,16 +26,7 @@ function App() {
          es: "sol",
          en: "sun",
          id: 3,
-      },
-      {
-         es: "uno",
-         en: "one",
-         id: 4,
-      },
-      {
-         es: "dos",
-         en: "two",
-         id: 5,
+         icon: "./png/002-sun.png",
       },
    ]);
 
@@ -76,19 +67,23 @@ function App() {
       console.log(input);
    };
 
+   const skipWord = () => {
+      console.log("elo");
+      randomNumber();
+      generateNewWord();
+      setSkipped((skipped) => skipped + 1);
+   };
+
    const startApp = () => {
       generateNewWord();
       if (input === "") {
-         console.log("pusty input");
          randomNumber();
       } else if (input === word2) {
-         console.log("dobe tlumaczenie");
          randomNumber();
-         // setCorrect((correct) => correct + 1);
-         // setInput((input) => "");
+         setCorrect((correct) => correct + 1);
       } else if (input !== word2) {
-         console.log("zle tlumaczenie");
          randomNumber();
+         setWrong((wrong) => wrong + 1);
       }
       setInput((input) => "");
       // console.log(word + " " + word2);
@@ -99,10 +94,15 @@ function App() {
          <div className='circle1'></div>
          <div className='circle2'></div>
          <Header />
-         <Menu />
+         <Menu onClick={skipWord} />
 
          <main>
-            <ScoreBoards correct={correct} skipped={skipped} wrong={wrong} />
+            <ScoreBoards
+               correct={correct}
+               skipped={skipped}
+               wrong={wrong}
+               icon={icon}
+            />
             {/* <Cards /> */}
             <section className='words glass'>
                <Cards
@@ -111,6 +111,7 @@ function App() {
                   lan={isEnglish}
                   onChange={handleChange}
                   value={input}
+                  edit={capitalizeFirstLetter}
                />
                <div className='submit'>
                   <button onClick={startApp}>START</button>

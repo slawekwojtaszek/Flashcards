@@ -7,25 +7,31 @@ export const Card = ({
    is,
    change,
    value,
-   icon,
+   flag,
+   isMain,
 }) => {
    return (
       <>
          <div className='card1'>
             <div className='bar'>
                <div className='flag'>
-                  <img src='' alt='' />
+                  <h1>{isMain}</h1>
+                  <img src={process.env.PUBLIC_URL + flag} />
                </div>
                <div className='lang'>{language}</div>
             </div>
             <div className='word1'>
-               <img src={process.env.PUBLIC_URL + icon} />
-               {word1}
-               <h2>
-                  {is ? (
-                     <input onChange={change} type='text' value={word1} />
-                  ) : null}{" "}
-               </h2>
+               {isMain ? (
+                  <p>{word1}</p>
+               ) : (
+                  <textarea
+                     name='ere'
+                     onChange={change}
+                     value={value}
+                     id=''
+                     cols='60'
+                     rows='3'></textarea>
+               )}
             </div>
          </div>
       </>

@@ -1,7 +1,7 @@
 import React from "react";
 import { ScoreBoard } from "./ScoreBoard";
 
-export const ScoreBoards = ({ correct, skipped, wrong }) => {
+export const ScoreBoards = ({ icon, correct, skipped, wrong }) => {
    return (
       <>
          <section className='panel glass2'>
@@ -17,7 +17,9 @@ export const ScoreBoards = ({ correct, skipped, wrong }) => {
                </div>
             </div>
             <div className='icon'>
-               <div className='png'></div>
+               <div className='png'>
+                  <img src={icon} alt='' />
+               </div>
             </div>
          </section>
       </>

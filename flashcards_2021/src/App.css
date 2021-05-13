@@ -117,6 +117,15 @@ body {
    background-color: black;
 }
 
+textarea {
+   border: none;
+   background-image: none;
+   background-color: transparent;
+   -webkit-box-shadow: none;
+   -moz-box-shadow: none;
+   box-shadow: none;
+}
+
 /* ALL ABOVE RESET */
 
 /* GRID */
@@ -322,39 +331,51 @@ ul li a {
 
 .words {
    display: flex;
-
    flex-direction: column;
    align-items: center;
    justify-content: center;
    height: 100%;
+   width: 100%;
 }
 
 .word1 {
    display: flex;
    max-width: 100%;
+   width: 100%;
+   word-wrap: break-word;
+   word-break: break-all;
    justify-content: center;
    align-items: center;
+   border: 2px solid blue;
 }
 
-.card1 .word1,
-.card2 .word2 {
-   height: 80%;
+.card1 .word1 {
+   height: 100%;
    border-radius: 5px;
    border: 3px solid white;
+   background-color: transparent;
 }
 
 .card1 .word1 p,
-.card2 .word2 p {
+textarea {
+   display: flex;
+   align-items: center;
+   justify-content: center;
    width: 90%;
+   height: 50%;
    max-width: 100%;
    padding: 0.3rem;
    word-break: break-all;
    font-size: 3rem;
-   color: rgb(255, 70, 126);
+   color: rgb(46, 46, 46);
    font-weight: 700;
-
-   text-align: center;
-   border: 2px solid white;
+   /* 
+   border: 2px solid green; */
+}
+textarea::placeholder {
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 .card {
@@ -425,23 +446,6 @@ button:hover {
    );
 }
 
-.input {
-   background-color: transparent;
-   width: 90%;
-   height: 35%;
-   border: 2px solid white;
-}
-
-.input::placeholder {
-   display: flex;
-   height: 100%;
-   justify-content: center;
-   align-items: center;
-   color: white;
-   font-size: 1rem;
-   font-weight: 300;
-}
-
 .card1,
 .card2 {
    display: flex;
@@ -451,9 +455,7 @@ button:hover {
 }
 
 .card1 .bar,
-.card1 .word1,
-.card2 .bar,
-.card2 .word2 {
+.card2 .bar {
    width: 100%;
    display: flex;
    justify-content: center;
@@ -485,8 +487,9 @@ button:hover {
    align-items: center;
    justify-content: center;
    height: 100%;
-
-   color: #555;
+   /* text-transform: uppercase; */
+   color: rgb(40, 40, 40);
+   font-weight: 700;
    width: 40%;
 }
 
