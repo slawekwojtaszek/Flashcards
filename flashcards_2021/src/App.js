@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import ErrorPopUp from "./components/ErrorPopUp";
 import Generate from "./components/GenerateNumber";
-
 import { Menu } from "./components/Menu";
 import { Header } from "./components/Header";
 import { Word } from "./components/Word";
-import { Stats } from "./components/Stats";
+import { ScoreBoards } from "./components/ScoreBoards";
 import { Cards } from "./components/Cards";
 
 function App() {
@@ -15,11 +14,13 @@ function App() {
          es: "casa",
          en: "house",
          id: 1,
+         icon: "./png/001-house.png",
       },
       {
          es: "manzana",
          en: "apple",
          id: 2,
+         icon: "./png/001-apple.png",
       },
       {
          es: "sol",
@@ -31,26 +32,66 @@ function App() {
          en: "one",
          id: 4,
       },
+      {
+         es: "dos",
+         en: "two",
+         id: 5,
+      },
    ]);
 
-   const myNewArray = () => {
-      words.map((item) => {
-         console.log(item.id);
-      });
+   //Generate random number
+
+   const randomNumber = () => {
+      setNumber((number) => Math.floor(Math.random() * words.length));
    };
 
-   const myVar = "TO DZIakdjkadjak  ALA";
+   const capitalizeFirstLetter = (string) => {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+   };
 
+   const [isEnglish, setIsEnglish] = useState(true);
+
+   //Word States
    const [input, setInput] = useState("");
+   const [number, setNumber] = useState(0);
+   const [word, setWord] = useState();
+   const [word2, setWord2] = useState("");
+   const [icon, setIcon] = useState();
+   //Points States
+   const [correct, setCorrect] = useState(0);
+   const [skipped, setSkipped] = useState(0);
+   const [wrong, setWrong] = useState(0);
+
+   //Functions
+   const generateNewWord = () => {
+      setWord((word) => words[number].es);
+      setWord2((word2) => words[number].en);
+      setIcon((icon) => words[number].icon);
+   };
 
    const handleChange = (e) => {
       let myInput = e.target.value;
-      // myInput = myInput.toLowerCase();
+      myInput = myInput.toLowerCase();
       setInput((input) => myInput);
+      console.log(input);
    };
 
    const startApp = () => {
-      myNewArray();
+      generateNewWord();
+      if (input === "") {
+         console.log("pusty input");
+         randomNumber();
+      } else if (input === word2) {
+         console.log("dobe tlumaczenie");
+         randomNumber();
+         // setCorrect((correct) => correct + 1);
+         // setInput((input) => "");
+      } else if (input !== word2) {
+         console.log("zle tlumaczenie");
+         randomNumber();
+      }
+      setInput((input) => "");
+      // console.log(word + " " + word2);
    };
 
    return (
@@ -59,11 +100,18 @@ function App() {
          <div className='circle2'></div>
          <Header />
          <Menu />
+
          <main>
-            <Stats />
+            <ScoreBoards correct={correct} skipped={skipped} wrong={wrong} />
             {/* <Cards /> */}
             <section className='words glass'>
-               <Cards data={myVar} />
+               <Cards
+                  icon={icon}
+                  data={word}
+                  lan={isEnglish}
+                  onChange={handleChange}
+                  value={input}
+               />
                <div className='submit'>
                   <button onClick={startApp}>START</button>
                </div>
