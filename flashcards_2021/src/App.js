@@ -36,6 +36,8 @@ function App() {
       setNumber((number) => Math.floor(Math.random() * words.length));
    };
 
+   //Remove last word
+
    const capitalizeFirstLetter = (string) => {
       return string.charAt(0).toUpperCase() + string.slice(1);
    };
@@ -52,6 +54,7 @@ function App() {
    const [correct, setCorrect] = useState(0);
    const [skipped, setSkipped] = useState(0);
    const [wrong, setWrong] = useState(0);
+   const [flag, setFlag] = useState(false);
 
    //Functions
    const generateNewWord = () => {
@@ -74,10 +77,16 @@ function App() {
       setSkipped((skipped) => skipped + 1);
    };
 
+   const handleThat = () => {
+      setFlag((flag) => !flag);
+   };
    const startApp = () => {
       generateNewWord();
       if (input === "") {
-         randomNumber();
+         setTimeout(function () {
+            setFlag((flag) => !flag);
+         }, 30);
+         // randomNumber();
       } else if (input === word2) {
          randomNumber();
          setCorrect((correct) => correct + 1);
@@ -95,7 +104,10 @@ function App() {
          <div className='circle2'></div>
          <Header />
          <Menu onClick={skipWord} />
-
+         <div className={flag ? "popup glass2" : "popdown "}>
+            {" "}
+            <span onClick={handleThat}>X</span>
+         </div>
          <main>
             <ScoreBoards
                correct={correct}

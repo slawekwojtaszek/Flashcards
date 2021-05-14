@@ -1,5 +1,5 @@
 import React from "react";
-
+let newWord;
 export const Card = ({
    language,
    word1,
@@ -10,6 +10,15 @@ export const Card = ({
    flag,
    isMain,
 }) => {
+   const capitalizeFirstLetter = (string) => {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+   };
+   const checkIt = () => {
+      newWord = capitalizeFirstLetter(word1);
+      return newWord;
+      console.log(newWord);
+   };
+
    return (
       <>
          <div className='card1'>
