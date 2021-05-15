@@ -9,6 +9,7 @@ export const Card = ({
    value,
    flag,
    isMain,
+   isStarted,
 }) => {
    const capitalizeFirstLetter = (string) => {
       return string.charAt(0).toUpperCase() + string.slice(1);
@@ -39,6 +40,11 @@ export const Card = ({
                      value={value}
                      id=''
                      cols='60'
+                     placeholder={
+                        isStarted
+                           ? "How to say it in English?"
+                           : "Press Start to begin"
+                     }
                      rows='3'></textarea>
                )}
             </div>

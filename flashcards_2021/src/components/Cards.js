@@ -3,7 +3,16 @@ import { Card } from "./Card";
 const englishFlag = "../png/002-united-kingdom.png";
 const spanishFlag = "../png/001-spain.png";
 
-export const Cards = ({ data, lan, onChange, value, icon, flag, edit }) => {
+export const Cards = ({
+   data,
+   lan,
+   onChange,
+   value,
+   icon,
+   flag,
+   edit,
+   isStarted,
+}) => {
    return (
       <>
          <Card
@@ -19,6 +28,7 @@ export const Cards = ({ data, lan, onChange, value, icon, flag, edit }) => {
             is={lan}
             change={onChange}
             value={value}
+            isStarted={isStarted}
          />
       </>
    );

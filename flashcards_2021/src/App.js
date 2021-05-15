@@ -4,11 +4,16 @@ import ErrorPopUp from "./components/ErrorPopUp";
 import Generate from "./components/GenerateNumber";
 import { Menu } from "./components/Menu";
 import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
 import { Word } from "./components/Word";
 import { ScoreBoards } from "./components/ScoreBoards";
 import { Cards } from "./components/Cards";
 
 function App() {
+   const quotes = [
+      "The limits of my language mean the limits of my world.",
+      "He who knows no foreign languages knows nothing of his own.",
+   ];
    const [words, setWords] = useState([
       {
          es: "casa",
@@ -42,9 +47,10 @@ function App() {
       return string.charAt(0).toUpperCase() + string.slice(1);
    };
 
-   const [isEnglish, setIsEnglish] = useState(true);
-
    //Word States
+   const [isStarted, setIsStarted] = useState(false);
+   const [isEnglish, setIsEnglish] = useState(true);
+   const [isSpanish, setIsSpanish] = useState(false);
    const [input, setInput] = useState("");
    const [number, setNumber] = useState(0);
    const [word, setWord] = useState();
@@ -77,36 +83,55 @@ function App() {
       setSkipped((skipped) => skipped + 1);
    };
 
+   const changeToSpanish = () => {
+      setIsSpanish((isSpanish) => true);
+      setIsEnglish((isEnglish) => false);
+      console.log(`angielski jest ${isEnglish}`);
+      console.log(`hiszpanski jest ${isSpanish}`);
+   };
+
+   const changeLanguage = () => {
+      console.log(isEnglish);
+      setIsSpanish((isSpanish) => !isSpanish);
+      return setIsEnglish((isEnglish) => !isEnglish);
+   };
+
+   const changeFlag = () => {
+      if (isStarted) {
+         setFlag((flag) => !flag);
+      }
+   };
+
    const handleThat = () => {
       setFlag((flag) => !flag);
    };
    const startApp = () => {
-      generateNewWord();
+      setIsStarted((isStarted) => true);
       if (input === "") {
-         setTimeout(function () {
-            setFlag((flag) => !flag);
-         }, 30);
-         // randomNumber();
+         generateNewWord();
+         changeFlag();
       } else if (input === word2) {
+         generateNewWord();
          randomNumber();
          setCorrect((correct) => correct + 1);
       } else if (input !== word2) {
+         generateNewWord();
          randomNumber();
          setWrong((wrong) => wrong + 1);
       }
       setInput((input) => "");
-      // console.log(word + " " + word2);
    };
 
    return (
       <div className='App'>
          <div className='circle1'></div>
          <div className='circle2'></div>
-         <Header />
-         <Menu onClick={skipWord} />
+         <Header quote={quotes[number]} />
+         <Menu onClick={skipWord} swap={changeLanguage} />
          <div className={flag ? "popup glass2" : "popdown "}>
             {" "}
             <span onClick={handleThat}>X</span>
+            <h1>PLEASE WRITE SOMETHING</h1>
          </div>
          <main>
             <ScoreBoards
@@ -114,6 +139,7 @@ function App() {
                skipped={skipped}
                wrong={wrong}
                icon={icon}
+               isStarted={isStarted}
             />
             {/* <Cards /> */}
             <section className='words glass'>
@@ -124,15 +150,16 @@ function App() {
                   onChange={handleChange}
                   value={input}
                   edit={capitalizeFirstLetter}
+                  isStarted={isStarted}
                />
                <div className='submit'>
-                  <button onClick={startApp}>START</button>
+                  <button onClick={startApp}>
+                     {isStarted ? "Check" : "Start"}
+                  </button>
                </div>
             </section>
          </main>
-         <footer>
-            <h1>Footer</h1>
-         </footer>
+         <Footer />
       </div>
    );
 }

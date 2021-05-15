@@ -1,9 +1,9 @@
 import React from "react";
 
-export const Header = () => {
+export const Header = ({ quote }) => {
    return (
       <header>
-         <h1>"The limits of my language mean the limits of my world."</h1>
+         <h1>{quote}</h1>
       </header>
    );
 };

@@ -180,13 +180,18 @@ footer {
 
 .logo {
    display: flex;
+   font-family: "Gaegu", cursive;
    text-align: center;
    justify-content: center;
    margin-bottom: 0.8rem;
    align-items: center;
-
-   height: 50%;
+   font-size: 1.5rem;
+   height: 25%;
    width: 90%;
+}
+
+.logo img {
+   margin-left: 0.5rem;
 }
 
 ul {
@@ -199,6 +204,7 @@ ul {
 
 li {
    display: flex;
+   width: 15%;
    align-items: center;
    justify-content: space-between;
    margin: 1rem 2rem 1rem 2rem;
@@ -220,7 +226,7 @@ ul li a {
    height: 100%;
    list-style: none;
    width: 100%;
-   font-size: 1.3rem;
+   font-size: 1.1rem;
    text-decoration: none;
    text-align: center;
    color: rgb(77, 77, 77);
@@ -362,8 +368,9 @@ textarea {
    display: flex;
    align-items: center;
    justify-content: center;
+   font-family: "Gaegu", cursive;
    width: 90%;
-   height: 50%;
+   height: 30%;
    max-width: 100%;
    padding: 0.3rem;
    word-break: break-all;
@@ -374,9 +381,9 @@ textarea {
    border: 2px solid green; */
 }
 textarea::placeholder {
-   display: flex;
-   justify-content: center;
-   align-items: center;
+   border: 2px solid white;
+   font-size: 2rem;
+   color: white;
 }
 
 .card {

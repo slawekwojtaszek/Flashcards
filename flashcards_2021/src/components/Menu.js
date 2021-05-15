@@ -12,19 +12,23 @@ import sun from "../png/002-sun.png";
 import england from "../png/007-england.png";
 import reset from "../png/006-circular-refreshment-arrow.png";
 import { MenuElement } from "./MenuElement";
+import logo from "../png/001-cards.png";
 let url = "https://css-tricks.com/snippets/css/a-guide-to-flexbox/";
 
-export const Menu = ({ onClick }) => {
+export const Menu = ({ onClick, swap }) => {
    return (
       <nav>
-         <div className='logo glass2'>Flashcards</div>
+         <div className='logo glass2'>
+            <h1>Flashcards</h1>
+            <img src={logo} alt='' />
+         </div>
          <ul className='glass2'>
-            <MenuElement url={url} src={england} text='England' />
-            <MenuElement url={url} src={spain} text='Spain' />
+            <MenuElement src={england} change={swap} text='England' />
+            <MenuElement src={spain} change={swap} text='Spain' />
             <MenuElement onClick={onClick} src={skip} text='Skip Word' />
-            <MenuElement url={url} src={add} text='Add Word' />
+            <MenuElement src={add} text='Add Word' />
             <MenuElement src={help} text='Help' />
-            <MenuElement url={url} src={night} text='Night Mode' />
+            <MenuElement src={night} text='Night Mode' />
          </ul>
       </nav>
    );
