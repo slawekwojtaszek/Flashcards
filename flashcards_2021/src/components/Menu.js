@@ -15,7 +15,14 @@ import { MenuElement } from "./MenuElement";
 import logo from "../png/001-cards.png";
 let url = "https://css-tricks.com/snippets/css/a-guide-to-flexbox/";
 
-export const Menu = ({ onClick, swap }) => {
+let es = "Spanish";
+let en = "English";
+let sw = "Skip Word";
+let ad = "Add Word";
+let hp = "Help";
+let nm = "Night Mode";
+
+export const Menu = ({ handleClick }) => {
    return (
       <nav>
          <div className='logo glass2'>
@@ -23,12 +30,42 @@ export const Menu = ({ onClick, swap }) => {
             <img src={logo} alt='' />
          </div>
          <ul className='glass2'>
-            <MenuElement src={england} change={swap} text='England' />
-            <MenuElement src={spain} change={swap} text='Spain' />
-            <MenuElement onClick={onClick} src={skip} text='Skip Word' />
-            <MenuElement src={add} text='Add Word' />
-            <MenuElement src={help} text='Help' />
-            <MenuElement src={night} text='Night Mode' />
+            <MenuElement
+               src={england}
+               icon={en}
+               changeLan={handleClick}
+               text='English'
+            />
+            <MenuElement
+               src={spain}
+               icon={es}
+               changeLan={handleClick}
+               text='Spanish'
+            />
+            <MenuElement
+               src={skip}
+               icon={sw}
+               changeLan={handleClick}
+               text='Skip Word'
+            />
+            <MenuElement
+               src={add}
+               icon={ad}
+               changeLan={handleClick}
+               text='Add Word'
+            />
+            <MenuElement
+               src={help}
+               icon={hp}
+               changeLan={handleClick}
+               text='Help'
+            />
+            <MenuElement
+               src={night}
+               icon={nm}
+               changeLan={handleClick}
+               text='Night Mode'
+            />
          </ul>
       </nav>
    );

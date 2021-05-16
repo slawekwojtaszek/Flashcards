@@ -8,6 +8,7 @@ import { Footer } from "./components/Footer";
 import { Word } from "./components/Word";
 import { ScoreBoards } from "./components/ScoreBoards";
 import { Cards } from "./components/Cards";
+import { findAllByTestId } from "@testing-library/dom";
 
 function App() {
    const quotes = [
@@ -51,6 +52,7 @@ function App() {
    const [isStarted, setIsStarted] = useState(false);
    const [isEnglish, setIsEnglish] = useState(true);
    const [isSpanish, setIsSpanish] = useState(false);
+   const [nightMode, setNightMode] = useState(false);
    const [input, setInput] = useState("");
    const [number, setNumber] = useState(0);
    const [word, setWord] = useState();
@@ -64,9 +66,15 @@ function App() {
 
    //Functions
    const generateNewWord = () => {
-      setWord((word) => words[number].es);
-      setWord2((word2) => words[number].en);
-      setIcon((icon) => words[number].icon);
+      if (isEnglish) {
+         setWord((word) => words[number].es);
+         setWord2((word2) => words[number].en);
+         setIcon((icon) => words[number].icon);
+      } else if (isSpanish) {
+         setWord((word) => words[number].en);
+         setWord2((word2) => words[number].es);
+         setIcon((icon) => words[number].icon);
+      }
    };
 
    const handleChange = (e) => {
@@ -77,23 +85,9 @@ function App() {
    };
 
    const skipWord = () => {
-      console.log("elo");
       randomNumber();
-      generateNewWord();
+      // generateNewWord();
       setSkipped((skipped) => skipped + 1);
-   };
-
-   const changeToSpanish = () => {
-      setIsSpanish((isSpanish) => true);
-      setIsEnglish((isEnglish) => false);
-      console.log(`angielski jest ${isEnglish}`);
-      console.log(`hiszpanski jest ${isSpanish}`);
-   };
-
-   const changeLanguage = () => {
-      console.log(isEnglish);
-      setIsSpanish((isSpanish) => !isSpanish);
-      return setIsEnglish((isEnglish) => !isEnglish);
    };
 
    const changeFlag = () => {
@@ -102,35 +96,110 @@ function App() {
       }
    };
 
-   const handleThat = () => {
-      setFlag((flag) => !flag);
+   const nightModeSwitch = () => {
+      setNightMode((nightMode) => !nightMode);
+      if (nightMode === true) {
+      }
    };
+
+   const addWord = () => {
+      console.log("elo");
+   };
+
+   const changeToSpan = () => {
+      setWord((word) => words[number].en);
+      setWord2((word2) => words[number].es);
+      setIcon((icon) => words[number].icon);
+      setIsSpanish((isSpanish) => true);
+      setIsEnglish((isEnglish) => false);
+      // generateNewWord();
+   };
+   const changeToEng = () => {
+      setWord((word) => words[number].es);
+      setWord2((word2) => words[number].en);
+      setIcon((icon) => words[number].icon);
+      setIsEnglish((isEnglish) => true);
+      setIsSpanish((isSpanish) => false);
+      // generateNewWord();
+   };
+
+   // const handleThat = () => {
+   //    setFlag((flag) => !flag);
+   // };
+
+   const handleMenuClick = (e) => {
+      if (e.target.innetText === "English" || e.target.alt === "English") {
+         changeToEng();
+      } else if (
+         e.target.alt === "Spanish" ||
+         e.target.innetText === "Spanish"
+      ) {
+         changeToSpan();
+      } else if (
+         e.target.alt === "Skip Word" ||
+         e.target.innerHTML === "Skip Word"
+      ) {
+         skipWord();
+      } else if (
+         e.target.alt === "Night Mode" ||
+         e.target.innerHTML === "Night Mode"
+      ) {
+         nightModeSwitch();
+         console.log(nightMode);
+      } else if (
+         e.target.alt === "Add Word" ||
+         e.target.innerHTML === "Add Word"
+      ) {
+      }
+   };
+
    const startApp = () => {
       setIsStarted((isStarted) => true);
-      if (input === "") {
-         generateNewWord();
-         changeFlag();
-      } else if (input === word2) {
-         generateNewWord();
-         randomNumber();
-         setCorrect((correct) => correct + 1);
-      } else if (input !== word2) {
-         generateNewWord();
-         randomNumber();
-         setWrong((wrong) => wrong + 1);
+
+      if (isEnglish) {
+         if (input === "") {
+            generateNewWord();
+            changeFlag();
+         } else if (input === word2) {
+            generateNewWord();
+            randomNumber();
+            setCorrect((correct) => correct + 1);
+         } else if (input !== word2) {
+            generateNewWord();
+            randomNumber();
+            setWrong((wrong) => wrong + 1);
+         }
       }
+      if (isSpanish) {
+         setIsStarted((isStarted) => true);
+         if (input === "") {
+            generateNewWord();
+            changeFlag();
+         } else if (input === word2) {
+            generateNewWord();
+            randomNumber();
+            setCorrect((correct) => correct + 1);
+         } else if (input !== word2) {
+            generateNewWord();
+            randomNumber();
+            setWrong((wrong) => wrong + 1);
+         }
+      }
+      console.log(isEnglish);
+      console.log(isSpanish);
+
       setInput((input) => "");
    };
 
    return (
-      <div className='App'>
-         <div className='circle1'></div>
-         <div className='circle2'></div>
-         <Header quote={quotes[number]} />
-         <Menu onClick={skipWord} swap={changeLanguage} />
+      <div className={nightMode ? "App maincolor" : "App"}>
+         <div className={nightMode ? "circle1 night" : "circle1"}></div>
+         <div className={nightMode ? "circle2 night" : "circle2"}></div>
+         <Header />
+         <Menu handleClick={handleMenuClick} />
          <div className={flag ? "popup glass2" : "popdown "}>
             {" "}
-            <span onClick={handleThat}>X</span>
+            <span>X</span>
             <h1>PLEASE WRITE SOMETHING</h1>
          </div>
          <main>
@@ -140,6 +209,7 @@ function App() {
                wrong={wrong}
                icon={icon}
                isStarted={isStarted}
+               handleChange={handleChange}
             />
             {/* <Cards /> */}
             <section className='words glass'>
@@ -151,6 +221,8 @@ function App() {
                   value={input}
                   edit={capitalizeFirstLetter}
                   isStarted={isStarted}
+                  isEnglish={isEnglish}
+                  isSpanish={isSpanish}
                />
                <div className='submit'>
                   <button onClick={startApp}>

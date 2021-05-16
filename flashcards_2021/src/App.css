@@ -114,10 +114,6 @@ body {
    background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
 }
 
-.night {
-   background-color: black;
-}
-
 textarea {
    border: none;
    background-image: none;
@@ -141,6 +137,10 @@ textarea {
       ". nav main main . "
       ". nav main main . "
       "footer footer footer footer footer";
+}
+.maincolor {
+   background-color: black;
+   color: white;
 }
 
 header {
@@ -204,10 +204,11 @@ ul {
 
 li {
    display: flex;
-   width: 15%;
+
+   width: 100%;
    align-items: center;
    justify-content: space-between;
-   margin: 1rem 2rem 1rem 2rem;
+   /* margin: 1rem 2rem 1rem 2rem; */
 }
 
 img {
@@ -216,6 +217,18 @@ img {
    justify-content: center;
    height: 35px;
    width: 35px;
+   border: 2px solid red;
+   cursor: pointer;
+   transition: 0.2s ease-in;
+}
+img:hover {
+   border: 2px solid rgb(255, 255, 255);
+   background-color: white;
+}
+
+.imge {
+   border: yellowgreen 4px solid;
+   padding: 1rem;
 }
 
 ul li a {
@@ -225,7 +238,7 @@ ul li a {
    justify-content: center;
    height: 100%;
    list-style: none;
-   width: 100%;
+   width: 50%;
    font-size: 1.1rem;
    text-decoration: none;
    text-align: center;
@@ -233,6 +246,21 @@ ul li a {
 }
 
 /* SCORE PANEL */
+
+.add {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 100%;
+   width: 100%;
+   border: 2px solid green;
+}
+
+.add button {
+   height: 20px;
+   width: 100%;
+}
 
 .panel {
    display: flex;
@@ -564,7 +592,12 @@ footer h1 {
    width: 40rem;
    bottom: -7%;
    left: -7%;
-   z-index: -2;
+   z-index: -1;
+}
+
+.circle1.night,
+.circle2.night {
+   background-color: rgb(134, 74, 255);
 }
 
 .error {
