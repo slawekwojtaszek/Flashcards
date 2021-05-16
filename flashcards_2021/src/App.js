@@ -15,6 +15,7 @@ function App() {
       "The limits of my language mean the limits of my world.",
       "He who knows no foreign languages knows nothing of his own.",
    ];
+
    const [words, setWords] = useState([
       {
          es: "casa",
@@ -33,6 +34,108 @@ function App() {
          en: "sun",
          id: 3,
          icon: "./png/002-sun.png",
+      },
+      {
+         es: "carro",
+         en: "car",
+         id: 4,
+         icon: "./png/010-car.png",
+      },
+      {
+         es: "zanahoria",
+         en: "carrot",
+         id: 5,
+         icon: "./png/001-carrot.png",
+      },
+      {
+         es: "gato",
+         en: "cat",
+         id: 6,
+         icon: "./png/004-cat.png",
+      },
+      {
+         es: "perro",
+         en: "dog",
+         id: 7,
+         icon: "./png/005-dog.png",
+      },
+      {
+         es: "dulce",
+         en: "candy",
+         id: 8,
+         icon: "./png/006-candy.png",
+      },
+      {
+         es: "nube",
+         en: "cloud",
+         id: 9,
+         icon: "./png/009-cloud.png",
+      },
+      {
+         es: "fuego",
+         en: "fire",
+         id: 10,
+         icon: "./png/008-fire.png",
+      },
+      {
+         es: "arbol",
+         en: "tree",
+         id: 11,
+         icon: "./png/003-tree.png",
+      },
+      {
+         es: "agua",
+         en: "water",
+         id: 12,
+         icon: "./png/007-drop.png",
+      },
+      {
+         es: "bicicleta",
+         en: "bike",
+         id: 13,
+         icon: "./png/002-bicycle.png",
+      },
+      {
+         es: "cohete",
+         en: "rocket",
+         id: 14,
+         icon: "./png/001-rocket.png",
+      },
+      {
+         es: "nevera",
+         en: "fridge",
+         id: 15,
+         icon: "./png/004-fridge.png",
+      },
+      {
+         es: "madera",
+         en: "wood",
+         id: 16,
+         icon: "./png/002-wood.png",
+      },
+      {
+         es: "amor",
+         en: "love",
+         id: 17,
+         icon: "./png/006-love.png",
+      },
+      {
+         es: "telefono",
+         en: "phone",
+         id: 18,
+         icon: "./png/005-smartphone.png",
+      },
+      {
+         es: "avion",
+         en: "plane",
+         id: 19,
+         icon: "./png/007-travelling.png",
+      },
+      {
+         es: "dinero",
+         en: "money",
+         id: 20,
+         icon: "./png/003-money.png",
       },
    ]);
 
@@ -58,6 +161,7 @@ function App() {
    const [word, setWord] = useState();
    const [word2, setWord2] = useState("");
    const [icon, setIcon] = useState();
+
    //Points States
    const [correct, setCorrect] = useState(0);
    const [skipped, setSkipped] = useState(0);
@@ -81,12 +185,11 @@ function App() {
       let myInput = e.target.value;
       myInput = myInput.toLowerCase();
       setInput((input) => myInput);
-      console.log(input);
    };
 
    const skipWord = () => {
       randomNumber();
-      // generateNewWord();
+      generateNewWord();
       setSkipped((skipped) => skipped + 1);
    };
 
@@ -102,9 +205,9 @@ function App() {
       }
    };
 
-   const addWord = () => {
-      console.log("elo");
-   };
+   // const addWord = () => {
+   //    console.log("elo");
+   // };
 
    const changeToSpan = () => {
       setWord((word) => words[number].en);
@@ -112,6 +215,7 @@ function App() {
       setIcon((icon) => words[number].icon);
       setIsSpanish((isSpanish) => true);
       setIsEnglish((isEnglish) => false);
+
       // generateNewWord();
    };
    const changeToEng = () => {
@@ -128,12 +232,9 @@ function App() {
    // };
 
    const handleMenuClick = (e) => {
-      if (e.target.innetText === "English" || e.target.alt === "English") {
+      if (e.target.alt === "English" || e.target.text === "English") {
          changeToEng();
-      } else if (
-         e.target.alt === "Spanish" ||
-         e.target.innetText === "Spanish"
-      ) {
+      } else if (e.target.alt === "Spanish" || e.target.text === "Spanish") {
          changeToSpan();
       } else if (
          e.target.alt === "Skip Word" ||
@@ -146,6 +247,7 @@ function App() {
       ) {
          nightModeSwitch();
          console.log(nightMode);
+         console.log(e);
       } else if (
          e.target.alt === "Add Word" ||
          e.target.innerHTML === "Add Word"
@@ -185,8 +287,8 @@ function App() {
             setWrong((wrong) => wrong + 1);
          }
       }
-      console.log(isEnglish);
-      console.log(isSpanish);
+      // console.log(currentWord);
+      // console.log(id);
 
       setInput((input) => "");
    };

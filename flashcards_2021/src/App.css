@@ -204,11 +204,11 @@ ul {
 
 li {
    display: flex;
-
-   width: 100%;
+   cursor: pointer;
+   width: 35%;
    align-items: center;
    justify-content: space-between;
-   /* margin: 1rem 2rem 1rem 2rem; */
+   margin: 1rem 2rem 1rem 2rem;
 }
 
 img {
@@ -217,7 +217,6 @@ img {
    justify-content: center;
    height: 35px;
    width: 35px;
-   border: 2px solid red;
    cursor: pointer;
    transition: 0.2s ease-in;
 }
@@ -226,10 +225,10 @@ img:hover {
    background-color: white;
 }
 
-.imge {
+/* .imge {
    border: yellowgreen 4px solid;
    padding: 1rem;
-}
+} */
 
 ul li a {
    margin: 0.5rem 1rem;
@@ -539,6 +538,7 @@ footer h1 {
    color: white;
    font-weight: 700;
    font-size: 1rem;
+   z-index: 4;
 }
 
 /* GLASSMORPHISM */

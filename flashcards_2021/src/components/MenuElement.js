@@ -6,16 +6,16 @@ export const MenuElement = ({
    text,
    ero,
    onClick,
-   changeLan,
+   handleClick,
    icon,
 }) => {
    return (
       <li>
-         <a href={url} onClick={changeLan}>
+         <a href={url} onClick={handleClick}>
             {" "}
             <img className='imge' src={src} alt={icon} />{" "}
          </a>
-         <a className='menuelement' href={url} onClick={changeLan}>
+         <a className='menuelement' href={url} onClick={handleClick}>
             {text}
          </a>
       </li>

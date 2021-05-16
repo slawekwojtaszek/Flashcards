@@ -33,37 +33,37 @@ export const Menu = ({ handleClick }) => {
             <MenuElement
                src={england}
                icon={en}
-               changeLan={handleClick}
+               handleClick={handleClick}
                text='English'
             />
             <MenuElement
                src={spain}
+               text={es}
                icon={es}
-               changeLan={handleClick}
-               text='Spanish'
+               handleClick={handleClick}
             />
             <MenuElement
                src={skip}
                icon={sw}
-               changeLan={handleClick}
+               handleClick={handleClick}
                text='Skip Word'
             />
             <MenuElement
                src={add}
                icon={ad}
-               changeLan={handleClick}
+               handleClick={handleClick}
                text='Add Word'
             />
             <MenuElement
                src={help}
                icon={hp}
-               changeLan={handleClick}
+               handleClick={handleClick}
                text='Help'
             />
             <MenuElement
                src={night}
                icon={nm}
-               changeLan={handleClick}
+               handleClick={handleClick}
                text='Night Mode'
             />
          </ul>
