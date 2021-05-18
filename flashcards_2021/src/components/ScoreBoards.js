@@ -8,13 +8,19 @@ export const ScoreBoards = ({
    wrong,
    isStarted,
    handleChange,
+   list,
 }) => {
    return (
       <>
          <section className='panel glass2'>
             <div className='results'>
                <div className='boards'>
-                  <ScoreBoard title='Correct' color='good' number={correct} />
+                  <ScoreBoard
+                     title='Correct'
+                     myArray={list}
+                     color='good'
+                     number={correct}
+                  />
                   <ScoreBoard
                      title='Skipped'
                      color='skipped'

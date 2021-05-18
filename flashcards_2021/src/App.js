@@ -14,6 +14,26 @@ function App() {
    const quotes = [
       "The limits of my language mean the limits of my world.",
       "He who knows no foreign languages knows nothing of his own.",
+      "Do you know what a foreign accent is? It’s a sign of bravery. ",
+      "Learn a language, and you’ll avoid a war.",
+      "Language shapes the way we think, and determines what we can think about.",
+      "To have another language is to possess a second soul.",
+      "Learning is a treasure that will follow its owner everywhere.",
+      "To learn a language is to have one more window from which to look at the world.",
+      "You live a new life for every new language you speak. If you know only one language, you live only once.",
+      "Learn a new language and get a new soul. ",
+      "With languages, you are at home anywhere.",
+      "A different language is a different vision of life. ",
+      "One language sets you in a corridor for life. Two languages open every door along the way.",
+      "A man who knows two languages is worth two men. ",
+      "You can never understand one language until you understand at least two.",
+      "He who knows no foreign languages know nothing of his own.",
+      "Change your language and you change your thoughts.",
+      " A new language is a new life.",
+      "Knowledge of languages is the doorway to wisdom.",
+      "The man who does not know other languages, unless he is a man of genius, necessarily has deficiencies in his ideas.",
+      "Language is wine upon the lips.",
+      "Language is to the mind more than light is to the eye.",
    ];
 
    const [words, setWords] = useState([
@@ -139,10 +159,17 @@ function App() {
       },
    ]);
 
-   //Generate random number
+   const [good, setGood] = useState([]);
+   const [bad, setBad] = useState([]);
+   const wrongAnwsers = [];
+   //Generate random word number
 
    const randomNumber = () => {
       setNumber((number) => Math.floor(Math.random() * words.length));
+   };
+
+   const quoteNumber = () => {
+      setQuote((quote) => Math.floor(Math.random() * quotes.length));
    };
 
    //Remove last word
@@ -161,6 +188,11 @@ function App() {
    const [word, setWord] = useState();
    const [word2, setWord2] = useState("");
    const [icon, setIcon] = useState();
+   const [quote, setQuote] = useState(0);
+
+   //CSS
+
+   // const [klasa, setKlasa] = useState("");
 
    //Points States
    const [correct, setCorrect] = useState(0);
@@ -202,6 +234,17 @@ function App() {
    const nightModeSwitch = () => {
       setNightMode((nightMode) => !nightMode);
       if (nightMode === true) {
+      }
+   };
+   const addWordToArray = (input, word) => {
+      if (input === word) {
+         let copyArray = good;
+         copyArray.push(input);
+         setGood((good) => copyArray);
+      } else if (input !== word) {
+         let copyArray = bad;
+         copyArray.push(input);
+         setBad((bad) => copyArray);
       }
    };
 
@@ -262,11 +305,16 @@ function App() {
          if (input === "") {
             generateNewWord();
             changeFlag();
+            randomNumber();
          } else if (input === word2) {
+            // addAnime();
+            // stopAnime();
+            addWordToArray(input, word2);
             generateNewWord();
             randomNumber();
             setCorrect((correct) => correct + 1);
          } else if (input !== word2) {
+            addWordToArray(input, word2);
             generateNewWord();
             randomNumber();
             setWrong((wrong) => wrong + 1);
@@ -277,6 +325,7 @@ function App() {
          if (input === "") {
             generateNewWord();
             changeFlag();
+            randomNumber();
          } else if (input === word2) {
             generateNewWord();
             randomNumber();
@@ -290,22 +339,27 @@ function App() {
       // console.log(currentWord);
       // console.log(id);
 
+      console.log(good);
+      console.log(bad);
       setInput((input) => "");
+      quoteNumber();
    };
 
    return (
-      <div className={nightMode ? "App maincolor" : "App"}>
+      <div className={nightMode ? "App maincolor" : `App`}>
+         <Header quote={quotes[quote]} />
          <div className={nightMode ? "circle1 night" : "circle1"}></div>
          <div className={nightMode ? "circle2 night" : "circle2"}></div>
          <Header />
          <Menu handleClick={handleMenuClick} />
          <div className={flag ? "popup glass2" : "popdown "}>
             {" "}
-            <span>X</span>
-            <h1>PLEASE WRITE SOMETHING</h1>
+            {/* <span>X</span> */}
+            <h1>Please, write the translation</h1>
          </div>
          <main>
             <ScoreBoards
+               list={quotes}
                correct={correct}
                skipped={skipped}
                wrong={wrong}

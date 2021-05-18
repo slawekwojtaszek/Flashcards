@@ -220,10 +220,10 @@ img {
    cursor: pointer;
    transition: 0.2s ease-in;
 }
-img:hover {
+/* img:hover {
    border: 2px solid rgb(255, 255, 255);
    background-color: white;
-}
+} */
 
 /* .imge {
    border: yellowgreen 4px solid;
@@ -296,6 +296,11 @@ ul li a {
 }
 
 .boards .singleboard {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   flex-direction: column;
+   cursor: pointer;
    width: 90%;
    border-radius: 5px;
    height: 100%;
@@ -312,6 +317,10 @@ ul li a {
 
    text-align: center;
    padding: 0.2rem;
+}
+
+.open {
+   background-color: red;
 }
 .good {
    background-color: rgb(123, 255, 123);
@@ -461,24 +470,18 @@ button {
    height: 100%;
    font-size: 1rem;
    font-weight: 700;
-   transition: linear 0.2s;
+   transition: ease-in 0.1s;
    box-shadow: none;
    outline: inherit;
-   background: linear-gradient(
-      to right bottom,
-      rgba(245, 245, 245, 0.8),
-      rgba(255, 255, 255, 0.5)
-   );
-   z-index: 0;
-   backdrop-filter: blur(0.7rem);
+   background-color: #fff;
+   border: 1px solid white;
 }
 
 button:hover {
-   background: linear-gradient(
-      to right bottom,
-      rgba(255, 33, 100, 0.911),
-      rgba(rgba(248, 81, 131, 0.911))
-   );
+   background-color: rgb(132, 250, 132);
+   color: white;
+   border: 5px solid white;
+   font-weight: 900;
 }
 
 .card1,
@@ -687,12 +690,15 @@ footer h1 {
 }
 
 .popup {
+   display: flex;
+   justify-content: center;
+   align-items: center;
    -webkit-animation: scale-in-hor-right 0.9s
       cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.9s reverse both;
    animation: scale-in-hor-right 0.8s cubic-bezier(0.785, 0.135, 0.15, 0.86) 1s
       reverse both;
 
-   background-color: rgb(255, 93, 236);
+   background-color: #66a6ff;
 
    height: 50%;
    width: 50%;
@@ -703,6 +709,19 @@ footer h1 {
    transform: translate(-50%, -50%);
    z-index: 30;
 }
+
+.popup h1 {
+   text-align: center;
+   padding: 1rem;
+   border: 3px solid white;
+   font-size: 1.6rem;
+   color: white;
+   font-weight: 700;
+}
 .popdown {
    display: none;
+}
+
+.test {
+   background-color: red;
 }
