@@ -161,7 +161,8 @@ function App() {
 
    const [good, setGood] = useState([]);
    const [bad, setBad] = useState([]);
-   const wrongAnwsers = [];
+   const [skip, setSkip] = useState([]);
+
    //Generate random word number
 
    const randomNumber = () => {
@@ -241,10 +242,14 @@ function App() {
          let copyArray = good;
          copyArray.push(input);
          setGood((good) => copyArray);
-      } else if (input !== word) {
+      } else if (input !== word && input !== "") {
          let copyArray = bad;
          copyArray.push(input);
          setBad((bad) => copyArray);
+      } else if (input === "") {
+         let copyArray = skip;
+         copyArray.push(word);
+         setSkip((skip) => skip);
       }
    };
 
@@ -284,6 +289,8 @@ function App() {
          e.target.innerHTML === "Skip Word"
       ) {
          skipWord();
+         addWordToArray(input, word2);
+         console.log(skip);
       } else if (
          e.target.alt === "Night Mode" ||
          e.target.innerHTML === "Night Mode"
@@ -339,8 +346,6 @@ function App() {
       // console.log(currentWord);
       // console.log(id);
 
-      console.log(good);
-      console.log(bad);
       setInput((input) => "");
       quoteNumber();
    };
@@ -359,7 +364,9 @@ function App() {
          </div>
          <main>
             <ScoreBoards
-               list={quotes}
+               goodWords={good}
+               wrongWords={bad}
+               skip={skip}
                correct={correct}
                skipped={skipped}
                wrong={wrong}

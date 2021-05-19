@@ -262,19 +262,20 @@ ul li a {
 }
 
 .panel {
+   overflow: hidden;
    display: flex;
    margin-right: 0.8rem;
    flex-direction: column;
    align-items: center;
    justify-content: center;
-   height: 100%;
+   max-height: 100%;
 }
 
 .results,
 .icon {
    margin: 0.5rem;
    padding: 0.5rem;
-   height: 45%;
+   height: 50%;
    width: 90%;
 }
 
@@ -296,14 +297,15 @@ ul li a {
 }
 
 .boards .singleboard {
-   display: flex;
+   overflow: scroll;
+   /* display: flex;
    align-items: center;
-   justify-content: space-between;
-   flex-direction: column;
-   cursor: pointer;
+   justify-content: center;
+   flex-direction: column; */
+   cursor: all-scroll;
    width: 90%;
    border-radius: 5px;
-   height: 100%;
+   height: 70%;
    margin: 1rem;
    background: linear-gradient(
       to right bottom,
@@ -314,27 +316,29 @@ ul li a {
 .boards .singleboard p {
    color: #555;
    font-size: 0.8rem;
-
+   width: 100%;
    text-align: center;
    padding: 0.2rem;
+   height: 10%;
 }
-
+/* 
 .open {
+   width: 100%;
    background-color: red;
-}
+} */
 .good {
    background-color: rgb(123, 255, 123);
-   height: 100%;
+   height: 90%;
 }
 
 .bad {
+   height: 90%;
    background-color: rgb(255, 73, 73);
-   height: 100%;
 }
 
 .skipped {
+   height: 90%;
    background-color: rgb(255, 222, 73);
-   height: 100%;
 }
 
 .boards .good span,
@@ -344,13 +348,19 @@ ul li a {
    text-align: center;
    flex-direction: column;
    align-self: center;
-   justify-content: center;
+   justify-content: space-around;
    height: 100%;
    width: 100%;
-   font-size: 3rem;
+   font-size: 4rem;
    font-weight: 400;
    color: white;
 }
+
+/* .boards .good span p,
+.boards .bad span p,
+.boards .skipped span p {
+   color: white;
+} */
 
 .icon {
    display: flex;

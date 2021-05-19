@@ -8,7 +8,9 @@ export const ScoreBoards = ({
    wrong,
    isStarted,
    handleChange,
-   list,
+   goodWords,
+   wrongWords,
+   skip,
 }) => {
    return (
       <>
@@ -17,16 +19,22 @@ export const ScoreBoards = ({
                <div className='boards'>
                   <ScoreBoard
                      title='Correct'
-                     myArray={list}
+                     myArray={goodWords}
                      color='good'
                      number={correct}
                   />
                   <ScoreBoard
                      title='Skipped'
+                     myArray={skip}
                      color='skipped'
                      number={skipped}
                   />
-                  <ScoreBoard title='Wrong' color='bad' number={wrong} />
+                  <ScoreBoard
+                     title='Wrong'
+                     myArray={wrongWords}
+                     color='bad'
+                     number={wrong}
+                  />
                </div>
             </div>
             <div className='icon'>
