@@ -8,6 +8,7 @@ import { Footer } from "./components/Footer";
 import { Word } from "./components/Word";
 import { ScoreBoards } from "./components/ScoreBoards";
 import { Cards } from "./components/Cards";
+import testIcon from "./png/001-night-mode.png";
 import { findAllByTestId } from "@testing-library/dom";
 
 function App() {
@@ -186,20 +187,31 @@ function App() {
    const [nightMode, setNightMode] = useState(false);
    const [input, setInput] = useState("");
    const [number, setNumber] = useState(0);
+   //Single Word State
    const [word, setWord] = useState();
    const [word2, setWord2] = useState("");
    const [icon, setIcon] = useState();
    const [quote, setQuote] = useState(0);
 
-   //CSS
-
    // const [klasa, setKlasa] = useState("");
-
+   const [add, setAdd] = useState(false);
    //Points States
    const [correct, setCorrect] = useState(0);
    const [skipped, setSkipped] = useState(0);
    const [wrong, setWrong] = useState(0);
    const [flag, setFlag] = useState(false);
+
+   const addWord = (en, es) => {
+      setAdd((add) => !add);
+      const nmb = Math.floor(Math.random() * 10000);
+      const obj = {
+         en: en,
+         es: es,
+         icon: testIcon,
+         id: nmb,
+      };
+      return words.push(obj);
+   };
 
    //Functions
    const generateNewWord = () => {
@@ -237,6 +249,7 @@ function App() {
       if (nightMode === true) {
       }
    };
+
    const addWordToArray = (input, word) => {
       if (input === word) {
          let copyArray = good;
@@ -244,7 +257,7 @@ function App() {
          setGood((good) => copyArray);
       } else if (input !== word && input !== "") {
          let copyArray = bad;
-         copyArray.push(input);
+         copyArray.push(word);
          setBad((bad) => copyArray);
       } else if (input === "") {
          let copyArray = skip;
@@ -253,18 +266,12 @@ function App() {
       }
    };
 
-   // const addWord = () => {
-   //    console.log("elo");
-   // };
-
    const changeToSpan = () => {
       setWord((word) => words[number].en);
       setWord2((word2) => words[number].es);
       setIcon((icon) => words[number].icon);
       setIsSpanish((isSpanish) => true);
       setIsEnglish((isEnglish) => false);
-
-      // generateNewWord();
    };
    const changeToEng = () => {
       setWord((word) => words[number].es);
@@ -272,12 +279,7 @@ function App() {
       setIcon((icon) => words[number].icon);
       setIsEnglish((isEnglish) => true);
       setIsSpanish((isSpanish) => false);
-      // generateNewWord();
    };
-
-   // const handleThat = () => {
-   //    setFlag((flag) => !flag);
-   // };
 
    const handleMenuClick = (e) => {
       if (e.target.alt === "English" || e.target.text === "English") {
@@ -302,6 +304,9 @@ function App() {
          e.target.alt === "Add Word" ||
          e.target.innerHTML === "Add Word"
       ) {
+         addWord("efef", "abababa");
+         console.log(words);
+         console.log(add);
       }
    };
 
@@ -343,11 +348,10 @@ function App() {
             setWrong((wrong) => wrong + 1);
          }
       }
-      // console.log(currentWord);
-      // console.log(id);
 
       setInput((input) => "");
       quoteNumber();
+      console.log(words);
    };
 
    return (
@@ -362,6 +366,20 @@ function App() {
             {/* <span>X</span> */}
             <h1>Please, write the translation</h1>
          </div>
+
+         <div className={add ? "add" : "popdown"}>
+            <span onClick={addWord}>X</span>
+            <label for='fname'>
+               English
+               <input type='text' />
+            </label>
+
+            <label for='fname'>
+               Spanish
+               <input type='text' />
+            </label>
+            <button>ENTER</button>
+         </div>
          <main>
             <ScoreBoards
                goodWords={good}
@@ -374,6 +392,7 @@ function App() {
                isStarted={isStarted}
                handleChange={handleChange}
             />
+
             {/* <Cards /> */}
             <section className='words glass'>
                <Cards

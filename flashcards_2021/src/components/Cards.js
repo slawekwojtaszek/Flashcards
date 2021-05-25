@@ -49,7 +49,7 @@ export const Cards = ({
                   cols='60'
                   placeholder={
                      isStarted
-                        ? "How to say it in English?"
+                        ? `How to say it in ${isEnglish ? english : spanish}?`
                         : "Press Start to begin"
                   }
                   rows='3'></textarea>
