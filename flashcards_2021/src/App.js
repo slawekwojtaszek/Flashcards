@@ -194,7 +194,7 @@ function App() {
    const [quote, setQuote] = useState(0);
 
    // const [klasa, setKlasa] = useState("");
-   const [add, setAdd] = useState(false);
+   const [add, setAdd] = useState(true);
    //Points States
    const [correct, setCorrect] = useState(0);
    const [skipped, setSkipped] = useState(0);
@@ -202,7 +202,6 @@ function App() {
    const [flag, setFlag] = useState(false);
 
    const addWord = (en, es) => {
-      setAdd((add) => !add);
       const nmb = Math.floor(Math.random() * 10000);
       const obj = {
          en: en,
@@ -211,6 +210,12 @@ function App() {
          id: nmb,
       };
       return words.push(obj);
+   };
+
+   const handleAddWord = () => {
+      addWord("elo", "belo");
+      console.log(words);
+      setAdd((add) => !add);
    };
 
    //Functions
@@ -304,7 +309,7 @@ function App() {
          e.target.alt === "Add Word" ||
          e.target.innerHTML === "Add Word"
       ) {
-         addWord("efef", "abababa");
+         setAdd((add) => !add);
          console.log(words);
          console.log(add);
       }
@@ -368,17 +373,39 @@ function App() {
          </div>
 
          <div className={add ? "add" : "popdown"}>
-            <span onClick={addWord}>X</span>
-            <label for='fname'>
-               English
-               <input type='text' />
-            </label>
+            <div className='top'>
+               <div className='x'>
+                  <span
+                     onClick={() => {
+                        setAdd((add) => !add);
+                     }}>
+                     X
+                  </span>
+               </div>
+            </div>
+            <div className='title'>
+               <h1>Add Word</h1>
+               <p>Add your word to expand the vocabulary</p>
+            </div>
+            <div className='header'>
+               <div className='form'>
+                  <div className='inp1'>
+                     <p>English</p>
+                     <input type='text' />
+                  </div>
+                  <div className='inp2'>
+                     <p>Spanish</p>
+                     <input type='text' />
+                  </div>
+                  <button onClick={handleAddWord}>Add Word</button>
+               </div>
+            </div>
 
-            <label for='fname'>
-               Spanish
-               <input type='text' />
-            </label>
-            <button>ENTER</button>
+            <div className='footer'>
+               <p>
+                  Unfortunately, adding your icon is not supported at the moment
+               </p>
+            </div>
          </div>
          <main>
             <ScoreBoards
