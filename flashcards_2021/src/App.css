@@ -592,22 +592,22 @@ textarea::placeholder {
    justify-content: center;
    align-items: center;
    border-radius: 5px;
-   color: #555;
+   color: white;
+   text-transform: uppercase;
    width: 90%;
    height: 100%;
    font-size: 1rem;
    font-weight: 700;
-   transition: ease-in 0.1s;
+   transition: linear 0.1s;
    box-shadow: none;
    outline: inherit;
-   background-color: #fff;
-   border: 1px solid white;
+   background-color: rgb(85, 237, 85);
+   border: 3px solid rgb(132, 250, 132);
 }
 
 .submit button:hover {
-   background-color: rgb(132, 250, 132);
-   color: white;
-   border: 5px solid white;
+   background-color: rgb(82, 155, 82);
+   border: 2px solid rgb(82, 155, 82);
    font-weight: 900;
 }
 
