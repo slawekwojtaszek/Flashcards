@@ -256,7 +256,7 @@ ul li a {
    align-items: center;
    justify-content: space-between;
    height: 50%;
-   width: 50%;
+   width: 30%;
    z-index: 100;
    border-radius: 20px;
    border: 2px solid white;
@@ -422,7 +422,7 @@ ul li a {
    cursor: all-scroll;
    width: 90%;
    border-radius: 5px;
-   height: 70%;
+   height: 110%;
    margin: 1rem;
    background: linear-gradient(
       to right bottom,
@@ -820,12 +820,12 @@ footer h1 {
    display: flex;
    justify-content: center;
    align-items: center;
-   -webkit-animation: scale-in-hor-right 0.9s
-      cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.9s reverse both;
-   animation: scale-in-hor-right 0.8s cubic-bezier(0.785, 0.135, 0.15, 0.86) 1s
-      reverse both;
+   -webkit-animation: scale-in-hor-right 0.8s
+      cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.8s reverse both;
+   animation: scale-in-hor-right 0.7s cubic-bezier(0.785, 0.135, 0.15, 0.86)
+      0.7s reverse both;
 
-   background-color: #66a6ff;
+   background-color: rgba(255, 73, 115, 0.9);
 
    height: 50%;
    width: 50%;
@@ -851,4 +851,85 @@ footer h1 {
 
 .test {
    background-color: red;
+}
+
+@media (max-width: 600px) {
+   body {
+      display: none;
+      min-height: 100vh;
+      background-image: linear-gradient(120deg, #89f7fe 0%, #59dc1d 100%);
+   }
+
+   .App {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      /* display: grid;
+      height: 100%;
+      /* overflow: hidden; */
+      /* grid-auto-flow: row;
+      grid-template-rows: 5vh 30vh 40vh;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-areas:
+         "main main main "
+         "nav nav nav"; */
+   }
+   ul {
+      display: flex;
+      width: 40vh;
+      flex-direction: row;
+      justify-content: space-evenly;
+   }
+
+   li {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+      align-items: center;
+      justify-content: space-evenly;
+   }
+
+   img {
+      width: 20px;
+      height: 20px;
+   }
+
+   ul li a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      list-style: none;
+      width: 10%;
+      font-size: 0.4rem;
+      text-decoration: none;
+      text-align: center;
+      color: rgb(77, 77, 77);
+   }
+
+   .circle1,
+   .circle2 {
+      display: none;
+   }
+
+   main {
+      display: grid;
+      /* margin-right: 0.5rem; */
+      grid-auto-flow: column;
+      grid-template-columns: 1fr 2fr;
+      grid-area: main main;
+   }
+}
+
+.noselect {
+   -webkit-touch-callout: none; /* iOS Safari */
+   -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Old versions of Firefox */
+   -ms-user-select: none; /* Internet Explorer/Edge */
+   user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }

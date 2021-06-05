@@ -24,7 +24,7 @@ let nm = "Night Mode";
 
 export const Menu = ({ handleClick }) => {
    return (
-      <nav>
+      <nav className='noselect'>
          <div className='logo glass2'>
             <h1>Flashcards</h1>
             <img src={logo} alt='' />
@@ -54,6 +54,7 @@ export const Menu = ({ handleClick }) => {
                handleClick={handleClick}
                text='Add Word'
             />
+
             <MenuElement
                src={help}
                icon={hp}

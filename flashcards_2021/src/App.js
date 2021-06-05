@@ -8,7 +8,7 @@ import { Footer } from "./components/Footer";
 import { Word } from "./components/Word";
 import { ScoreBoards } from "./components/ScoreBoards";
 import { Cards } from "./components/Cards";
-import testIcon from "./png/001-night-mode.png";
+import testIcon from "./png/001-help.png";
 import { findAllByTestId } from "@testing-library/dom";
 
 function App() {
@@ -192,9 +192,12 @@ function App() {
    const [word2, setWord2] = useState("");
    const [icon, setIcon] = useState();
    const [quote, setQuote] = useState(0);
+   //Add Nww Word States
+   const [newEnglish, setNewEnglish] = useState("");
+   const [newSpanish, setNewSpanish] = useState("");
 
    // const [klasa, setKlasa] = useState("");
-   const [add, setAdd] = useState(true);
+   const [add, setAdd] = useState(false);
    //Points States
    const [correct, setCorrect] = useState(0);
    const [skipped, setSkipped] = useState(0);
@@ -202,21 +205,22 @@ function App() {
    const [flag, setFlag] = useState(false);
 
    const addWord = (en, es) => {
-      const nmb = Math.floor(Math.random() * 10000);
-      const obj = {
-         en: en,
-         es: es,
-         icon: testIcon,
-         id: nmb,
-      };
-      return words.push(obj);
+      if (en !== "" && es !== "") {
+         const nmb = Math.floor(Math.random() * 10000);
+         const obj = {
+            en: en,
+            es: es,
+            icon: testIcon,
+            id: nmb,
+         };
+         return words.push(obj);
+      }
    };
 
-   const handleAddWord = () => {
-      addWord("elo", "belo");
-      console.log(words);
-      setAdd((add) => !add);
-   };
+   // const handleAddWordToArray = (en, es) => {
+   //    addWord(en, es);
+   //    console.log(words);
+   // };
 
    //Functions
    const generateNewWord = () => {
@@ -235,6 +239,28 @@ function App() {
       let myInput = e.target.value;
       myInput = myInput.toLowerCase();
       setInput((input) => myInput);
+   };
+
+   const handleNewWordEnglish = (e) => {
+      let myInput = e.target.value;
+      myInput = myInput.toLowerCase();
+      setNewEnglish((input) => myInput);
+      console.log(myInput);
+   };
+
+   const handleNewWordSpanish = (e) => {
+      let myInput = e.target.value;
+      myInput = myInput.toLowerCase();
+      setNewSpanish((input) => myInput);
+      console.log(myInput);
+   };
+
+   const handleAdding = (en, es) => {
+      addWord(newEnglish, newSpanish);
+      setNewEnglish((newEnglish) => "");
+      setNewSpanish((newSpanish) => "");
+      setAdd((add) => !add);
+      console.log(words);
    };
 
    const skipWord = () => {
@@ -366,7 +392,7 @@ function App() {
          <div className={nightMode ? "circle2 night" : "circle2"}></div>
          <Header />
          <Menu handleClick={handleMenuClick} />
-         <div className={flag ? "popup glass2" : "popdown "}>
+         <div className={flag ? "popup" : "popdown "}>
             {" "}
             {/* <span>X</span> */}
             <h1>Please, write the translation</h1>
@@ -391,13 +417,21 @@ function App() {
                <div className='form'>
                   <div className='inp1'>
                      <p>English</p>
-                     <input type='text' />
+                     <input
+                        onChange={handleNewWordEnglish}
+                        type='text'
+                        value={newEnglish}
+                     />
                   </div>
                   <div className='inp2'>
                      <p>Spanish</p>
-                     <input type='text' />
+                     <input
+                        type='text'
+                        onChange={handleNewWordSpanish}
+                        value={newSpanish}
+                     />
                   </div>
-                  <button onClick={handleAddWord}>Add Word</button>
+                  <button onClick={handleAdding}>Add Word</button>
                </div>
             </div>
 

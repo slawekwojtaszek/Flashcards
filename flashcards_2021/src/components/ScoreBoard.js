@@ -14,10 +14,11 @@ export const ScoreBoard = ({ number, title, color, list, myArray }) => {
             <div className={color}>
                <span>{number}</span>
             </div>
-
-            {myArray.map((item) => (
-               <li>{item}</li>
-            ))}
+            <div>
+               {myArray.map((item) => (
+                  <li>{item}</li>
+               ))}
+            </div>
          </div>
 
          {/* <div className='open'>
