@@ -14,7 +14,7 @@ export const ScoreBoards = ({
 }) => {
    return (
       <>
-         <section className='panel glass2'>
+         <section className='panel glass'>
             <div className='results'>
                <div className='boards'>
                   <ScoreBoard

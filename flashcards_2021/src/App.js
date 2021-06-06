@@ -176,8 +176,8 @@ function App() {
 
    //Word States
    const [isStarted, setIsStarted] = useState(false);
-   const [isEnglish, setIsEnglish] = useState(false);
-   const [isSpanish, setIsSpanish] = useState(true);
+   const [isEnglish, setIsEnglish] = useState(true);
+   const [isSpanish, setIsSpanish] = useState(false);
    const [nightMode, setNightMode] = useState(false);
    const [input, setInput] = useState("");
    const [number, setNumber] = useState(0);
@@ -261,11 +261,14 @@ function App() {
    };
 
    const addWordToArray = (input, word) => {
-      if (input === word) {
+      if (input === word || input === word2) {
          let copyArray = good;
          copyArray.push(input);
          setGood((good) => copyArray);
-      } else if (input !== word && input !== "") {
+      } else if (
+         (input !== word && input !== "") ||
+         (input === word2 && input !== "")
+      ) {
          let copyArray = bad;
          copyArray.push(word);
          setBad((bad) => copyArray);
@@ -312,6 +315,7 @@ function App() {
          skipWord();
          addWordToArray(input, word2);
          console.log(skip);
+         setInput((input) => "");
       } else if (
          e.target.alt === "Night Mode" ||
          e.target.innerHTML === "Night Mode"
@@ -372,10 +376,12 @@ function App() {
             changeFlag();
             randomNumber();
          } else if (input === word2) {
+            addWordToArray(input, word2);
             generateNewWord();
             randomNumber();
             setCorrect((correct) => correct + 1);
          } else if (input !== word2) {
+            addWordToArray(input, word2);
             generateNewWord();
             randomNumber();
             setWrong((wrong) => wrong + 1);
