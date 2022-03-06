@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import ErrorPopUp from "./components/ErrorPopUp";
-import Generate from "./components/GenerateNumber";
 import { Menu } from "./components/Menu";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
@@ -9,6 +8,7 @@ import { Word } from "./components/Word";
 import { ScoreBoards } from "./components/ScoreBoards";
 import { Cards } from "./components/Cards";
 import testIcon from "./png/001-help.png";
+import AddNewWord from "./components/AddNewWord";
 import { findAllByTestId } from "@testing-library/dom";
 
 function App() {
@@ -236,14 +236,14 @@ function App() {
       let myInput = e.target.value;
       myInput = myInput.toLowerCase();
       setNewEnglish((input) => myInput);
-      console.log(myInput);
+      console.log(myInput + "to jest ang");
    };
 
    const handleNewWordSpanish = (e) => {
       let myInput = e.target.value;
       myInput = myInput.toLowerCase();
       setNewSpanish((input) => myInput);
-      console.log(myInput);
+      console.log(myInput + "to jest span");
    };
 
    const handleAddNewWord = (en, es) => {
@@ -251,7 +251,11 @@ function App() {
       setNewEnglish((newEnglish) => "");
       setNewSpanish((newSpanish) => "");
       setAdd((add) => !add);
-      console.log(words);
+      console.log((newEnglish, newSpanish));
+   };
+
+   const setAddFunction = () => {
+      setAdd((add) => !add);
    };
 
    const changeFlag = () => {
@@ -394,93 +398,66 @@ function App() {
    };
 
    return (
-      <div className={nightMode ? "App maincolor" : `App`}>
-         <Header quote={quotes[quote]} />
-         <div className={nightMode ? "circle1 night" : "circle1"}></div>
-         <div className={nightMode ? "circle2 night" : "circle2"}></div>
-         <Header />
-         <Menu handleClick={handleMenuClick} />
+      <div className={nightMode ? "app maincolor" : `app`}>
          <div className={flag ? "popup" : "popdown "}>
             <h1>Please, write the translation</h1>
          </div>
 
-         <div className={add ? "add" : "popdown"}>
-            <div className='top'>
-               <div className='x'>
-                  <span
-                     onClick={() => {
-                        setAdd((add) => !add);
-                     }}>
-                     X
-                  </span>
-               </div>
-            </div>
-            <div className='title'>
-               <h1>Add Word</h1>
-               <p>Add your word to expand the vocabulary</p>
-            </div>
-            <div className='header'>
-               <div className='form'>
-                  <div className='inp1'>
-                     <p>English</p>
-                     <input
-                        onChange={handleNewWordEnglish}
-                        type='text'
-                        value={newEnglish}
-                     />
-                  </div>
-                  <div className='inp2'>
-                     <p>Spanish</p>
-                     <input
-                        type='text'
-                        onChange={handleNewWordSpanish}
-                        value={newSpanish}
-                     />
-                  </div>
-                  <button onClick={handleAddNewWord}>Add Word</button>
-               </div>
-            </div>
-
-            <div className='footer'>
-               <p>
-                  Unfortunately, adding your icon is not supported at the moment
-               </p>
-            </div>
-         </div>
+         <Header quote={quotes[quote]} />
+         <div className={nightMode ? "circle1 night" : "circle1"}></div>
+         <div className={nightMode ? "circle2 night" : "circle2"}></div>
+         <Header />
+         <AddNewWord
+            add={add}
+            addFunction={setAddFunction}
+            handleEnglish={handleNewWordEnglish}
+            newEnglish={newEnglish}
+            handleSpanish={handleNewWordSpanish}
+            newSpanish={newSpanish}
+            handleAddNewWord={handleAddNewWord}
+         />
          <main>
-            <ScoreBoards
-               goodWords={good}
-               wrongWords={bad}
-               skip={skip}
-               correct={correct}
-               skipped={skipped}
-               wrong={wrong}
-               icon={icon}
-               isStarted={isStarted}
-               handleChange={handleInput}
-            />
-
-            {/* <Cards /> */}
-            <section className='words glass'>
-               <Cards
+            <div className='section1'>
+               {" "}
+               <Menu handleClick={handleMenuClick} />
+            </div>
+            <div className='section2'>
+               {" "}
+               <ScoreBoards
+                  goodWords={good}
+                  wrongWords={bad}
+                  skip={skip}
+                  correct={correct}
+                  skipped={skipped}
+                  wrong={wrong}
                   icon={icon}
-                  data={word}
-                  lan={isEnglish}
-                  onChange={handleInput}
-                  value={input}
-                  edit={capitalizeFirstLetter}
                   isStarted={isStarted}
-                  isEnglish={isEnglish}
-                  isSpanish={isSpanish}
+                  handleChange={handleInput}
                />
-               <div className='submit'>
-                  <button onClick={startApp}>
-                     {isStarted ? "Check Translation" : "Start"}
-                  </button>
-               </div>
-            </section>
+            </div>
+            <div className='section3'>
+               {" "}
+               <section className='words'>
+                  <Cards
+                     icon={icon}
+                     data={word}
+                     lan={isEnglish}
+                     onChange={handleInput}
+                     value={input}
+                     edit={capitalizeFirstLetter}
+                     isStarted={isStarted}
+                     isEnglish={isEnglish}
+                     isSpanish={isSpanish}
+                  />
+                  <div className='submit'>
+                     <button className='button' onClick={startApp}>
+                        {isStarted ? "Check Translation" : "Start"}
+                     </button>
+                  </div>
+               </section>
+            </div>
          </main>
-         <Footer />
+         {/* <Footer /> */}
       </div>
    );
 }

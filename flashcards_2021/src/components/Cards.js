@@ -40,7 +40,7 @@ export const Cards = ({
                </div>
                <div className='lang'>{isEnglish ? english : spanish}</div>
             </div>
-            <div className='word1'>
+            <div className='word1 '>
                <textarea
                   name='ere'
                   onChange={onChange}
