@@ -24,11 +24,12 @@ let nm = "Night Mode";
 
 export const Menu = ({ handleClick }) => {
    return (
-      <nav className='noselect'>
+      <nav>
          <div className='logo glass2'>
             <h1>Flashcards</h1>
             <img src={logo} alt='' />
          </div>
+
          <ul className='glass2'>
             <MenuElement
                src={england}
@@ -36,6 +37,7 @@ export const Menu = ({ handleClick }) => {
                handleClick={handleClick}
                text='English'
             />
+
             <MenuElement
                src={spain}
                text={es}
@@ -48,6 +50,7 @@ export const Menu = ({ handleClick }) => {
                handleClick={handleClick}
                text='Skip Word'
             />
+
             <MenuElement
                src={add}
                icon={ad}

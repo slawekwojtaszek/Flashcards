@@ -16,7 +16,7 @@ export const ScoreBoard = ({ number, title, color, list, myArray }) => {
             </div>
             <div>
                {myArray.map((item) => (
-                  <li>{item}</li>
+                  <li className='boardItem'>{item}</li>
                ))}
             </div>
          </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import "../css/ScorePanel.css";
 import { ScoreBoard } from "./ScoreBoard";
 
 export const ScoreBoards = ({

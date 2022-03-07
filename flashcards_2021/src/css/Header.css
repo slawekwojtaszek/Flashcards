@@ -1,0 +1,12 @@
+header.quote {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: 1rem;
+}
+header.quote h1 {
+   font-style: italic;
+   color: white;
+   font-weight: 700;
+   font-size: 0.9rem;
+}
