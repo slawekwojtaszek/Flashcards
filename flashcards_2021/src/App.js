@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 import ErrorPopUp from "./components/ErrorPopUp";
-import { Menu } from "./components/Menu";
+import Menu from "./components/Menu";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Word } from "./components/Word";
@@ -202,6 +202,7 @@ function App() {
    const [flag, setFlag] = useState(false);
 
    //Functions
+
    const generateNewWord = () => {
       if (isEnglish) {
          setWord((word) => words[number].es);

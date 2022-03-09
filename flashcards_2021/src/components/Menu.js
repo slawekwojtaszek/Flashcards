@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import add from "../png/005-add.png";
 import skip from "../png/001-next-page.png";
 import help from "../png/003-info.png";
@@ -22,15 +22,25 @@ let ad = "Add Word";
 let hp = "Help";
 let nm = "Night Mode";
 
-export const Menu = ({ handleClick }) => {
+function Menu({ handleClick }) {
+   const [isOpen, setisOpen] = useState(false);
+
+   const handleMenu = () => {
+      setisOpen((isOpen) => !isOpen);
+      console.log("siema");
+   };
+
    return (
       <nav>
          <div className='logo glass2'>
             <h1>Flashcards</h1>
             <img src={logo} alt='' />
+            <div className='op' onClick={handleMenu}>
+               +
+            </div>
          </div>
 
-         <ul className='glass2'>
+         <ul className={isOpen ? "show glass2" : `glass2`}>
             <MenuElement
                src={england}
                icon={en}
@@ -73,4 +83,6 @@ export const Menu = ({ handleClick }) => {
          </ul>
       </nav>
    );
-};
+}
+
+export default Menu;

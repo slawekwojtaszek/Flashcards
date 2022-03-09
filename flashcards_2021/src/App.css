@@ -30,8 +30,12 @@ main {
    display: flex;
    justify-content: space-around;
    align-items: center;
+   flex-direction: column;
    width: 20%;
    height: 100%;
+}
+.show {
+   display: block;
 }
 
 .section3 {
@@ -88,11 +92,12 @@ main {
 }
 
 .circle2 {
+   position: absolute;
+   top: 30%;
+   left: -10%;
    background-color: rgb(255, 43, 135);
    height: 40rem;
    width: 40rem;
-   bottom: -7%;
-   left: -7%;
    z-index: -1;
 }
 
@@ -113,11 +118,28 @@ main {
    }
 
    .section1 {
+      position: absolute;
+      top: -10%;
       margin-top: 4rem;
-      width: 100%;
+      width: 120%;
       height: 70vh;
       justify-content: space-between;
       flex-direction: column;
+      z-index: 2;
+   }
+
+   .op {
+      display: block;
+      font-size: 3rem;
+      color: #333;
+      font-weight: 900;
+      position: absolute;
+      top: 60%;
+      left: 47%;
+   }
+
+   ul {
+      display: none;
    }
 
    nav {
@@ -135,8 +157,11 @@ main {
    }
 
    main .section2 {
+      position: absolute;
+      top: 95%;
+      left: 30;
       height: 70vh;
-      width: 70%;
+      width: 80%;
       flex-direction: row;
    }
 
@@ -146,12 +171,18 @@ main {
    }
 
    .section2 .panel {
+      order: 2;
       height: 100%;
    }
 
    .section3 {
+      margin-top: 7rem;
+      order: 1;
       width: 100%;
       flex-direction: column;
+      position: absolute;
+      top: 0;
+      left: 0;
    }
 
    .section3 .words {
@@ -170,5 +201,17 @@ main {
 
    button.button {
       width: 60%;
+   }
+
+   .logo {
+      position: absolute;
+      top: 0;
+      left: 0;
+   }
+
+   .section1 ul {
+      backdrop-filter: blue(0.3rem);
+      background-color: #89f7fe;
+      border: 4px solid white;
    }
 }
