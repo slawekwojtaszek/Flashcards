@@ -22,20 +22,13 @@ let ad = "Add Word";
 let hp = "Help";
 let nm = "Night Mode";
 
-function Menu({ handleClick }) {
-   const [isOpen, setisOpen] = useState(false);
-
-   const handleMenu = () => {
-      setisOpen((isOpen) => !isOpen);
-      console.log("siema");
-   };
-
+function Menu({ handleClick, isOpen }) {
    return (
       <nav>
          <div className='logo glass2'>
             <h1>Flashcards</h1>
             <img src={logo} alt='' />
-            <div className='op' onClick={handleMenu}>
+            <div className='open' onClick={handleClick}>
                +
             </div>
          </div>

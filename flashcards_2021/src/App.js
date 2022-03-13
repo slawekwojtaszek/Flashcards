@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 import ErrorPopUp from "./components/ErrorPopUp";
@@ -37,7 +37,6 @@ function App() {
       "Language is wine upon the lips.",
       "Language is to the mind more than light is to the eye.",
    ];
-
    const [words, setWords] = useState([
       {
          es: "casa",
@@ -176,6 +175,7 @@ function App() {
    };
 
    //Word States
+   const [isOpen, setisOpen] = useState(false);
    const [isStarted, setIsStarted] = useState(false);
    const [isEnglish, setIsEnglish] = useState(true);
    const [isSpanish, setIsSpanish] = useState(false);
@@ -187,7 +187,7 @@ function App() {
    const [word2, setWord2] = useState("");
    const [icon, setIcon] = useState();
    const [quote, setQuote] = useState(0);
-   //Add Nww Word States
+   //Add New Word States
    const [newEnglish, setNewEnglish] = useState("");
    const [newSpanish, setNewSpanish] = useState("");
    const [add, setAdd] = useState(false);
@@ -202,7 +202,6 @@ function App() {
    const [flag, setFlag] = useState(false);
 
    //Functions
-
    const generateNewWord = () => {
       if (isEnglish) {
          setWord((word) => words[number].es);
@@ -304,6 +303,7 @@ function App() {
    };
 
    const handleMenuClick = (e) => {
+      setisOpen((isOpen) => !isOpen);
       if (
          (e.target.alt === "English" && isStarted === true) ||
          (e.target.text === "English" && isStarted === true)
@@ -320,7 +320,6 @@ function App() {
       ) {
          skipWord();
          addWordToArray(input, word2);
-         console.log(skip);
          setInput((input) => "");
       } else if (
          e.target.alt === "Night Mode" ||
@@ -334,8 +333,6 @@ function App() {
          e.target.innerHTML === "Add Word"
       ) {
          setAdd((add) => !add);
-         console.log(words);
-         console.log(add);
       }
    };
 
@@ -351,8 +348,6 @@ function App() {
       }
    };
 
-   //Remove last function should be added here
-
    const startApp = () => {
       setIsStarted((isStarted) => true);
 
@@ -362,8 +357,6 @@ function App() {
             changeFlag();
             randomNumber();
          } else if (input === word2) {
-            // addAnime();
-            // stopAnime();
             addWordToArray(input, word2);
             generateNewWord();
             randomNumber();
@@ -393,10 +386,8 @@ function App() {
             setWrong((wrong) => wrong + 1);
          }
       }
-
       setInput((input) => "");
       quoteNumber();
-      console.log(words);
    };
 
    return (
@@ -405,7 +396,10 @@ function App() {
             <h1>Please, write the translation</h1>
          </div>
 
-         <Header quote={quotes[quote]} />
+         <Header
+            quote={quotes[quote]}
+            className={nightMode ? "maincolor" : null}
+         />
          <div className={nightMode ? "circle1 night" : "circle1"}></div>
          <div className={nightMode ? "circle2 night" : "circle2"}></div>
          <Header />
@@ -420,11 +414,9 @@ function App() {
          />
          <main>
             <div className='section1'>
-               {" "}
-               <Menu handleClick={handleMenuClick} />
+               <Menu handleClick={handleMenuClick} isOpen={isOpen} />
             </div>
             <div className='section2'>
-               {" "}
                <ScoreBoards
                   goodWords={good}
                   wrongWords={bad}
@@ -438,7 +430,6 @@ function App() {
                />
             </div>
             <div className='section3'>
-               {" "}
                <section className='words'>
                   <Cards
                      icon={icon}

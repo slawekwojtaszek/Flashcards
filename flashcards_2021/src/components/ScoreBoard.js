@@ -1,11 +1,6 @@
 import React from "react";
 
-export const ScoreBoard = ({ number, title, color, list, myArray }) => {
-   // const showWord (arr) => {
-   //    return arr.map((item) => <p>{item}</p>)
-
-   // }
-   // showWord(myArray);
+export const ScoreBoard = ({ number, title, color, myArray }) => {
    return (
       <>
          <div className='singleboard'>
@@ -15,15 +10,13 @@ export const ScoreBoard = ({ number, title, color, list, myArray }) => {
                <span>{number}</span>
             </div>
             <div>
-               {myArray.map((item) => (
-                  <li className='boardItem'>{item}</li>
+               {myArray.map((item, id) => (
+                  <li className='boardItem' key={id}>
+                     {item}
+                  </li>
                ))}
             </div>
          </div>
-
-         {/* <div className='open'>
-            <li>Word1</li>
-         </div> */}
       </>
    );
 };

@@ -65,6 +65,42 @@ li a {
    text-align: center;
    color: rgb(77, 77, 77);
 }
-.op {
+.open {
    display: none;
 }
+
+@media screen and (min-width: 980px) and (max-width: 1199px) {
+   .logo {
+      font-size: 1rem;
+   }
+}
+@media screen and (min-width: 680px) and (max-width: 1000px) {
+   .logo {
+      font-size: 1.4rem;
+   }
+}
+
+/* @media screen and (min-width: 480px) and (max-width: 1000px) {
+   .logo {
+      font-size: 1.4rem;
+   }
+
+   ul {
+      width: 100%;
+      display: block;
+   }
+
+   nav {
+      margin-top: 2rem;
+      flex-direction: column;
+      justify-content: space-evenly;
+      width: 90%;
+      height: 80vh;
+   }
+
+   li {
+      width: 60%;
+      height: 5vh;
+      margin: 0.4rem auto;
+   }
+} */

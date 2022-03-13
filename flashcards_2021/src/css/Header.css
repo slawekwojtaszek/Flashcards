@@ -2,7 +2,7 @@ header.quote {
    display: flex;
    justify-content: center;
    align-items: center;
-   margin: 1rem;
+   padding: 1rem;
 }
 header.quote h1 {
    font-style: italic;
