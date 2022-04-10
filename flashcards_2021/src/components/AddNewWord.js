@@ -11,7 +11,7 @@ function AddNewWord({
    handleAddNewWord,
 }) {
    return (
-      <div className={add ? "add " : "popdown"}>
+      <div className={add ? "add " : "add off"}>
          <div className='top'>
             <div className='x'>
                <span

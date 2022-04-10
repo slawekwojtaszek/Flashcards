@@ -1,23 +1,11 @@
 import React from "react";
 
-export const MenuElement = ({
-   url,
-   src,
-   text,
-   ero,
-   onClick,
-   handleClick,
-   icon,
-}) => {
+export const MenuElement = ({ url, text, handleClick }) => {
    return (
-      <li>
-         <a href={url} onClick={handleClick}>
-            {" "}
-            <img className='imge' src={src} alt={icon} />{" "}
-         </a>
+      <>
          <a className='menuelement' href={url} onClick={handleClick}>
             {text}
          </a>
-      </li>
+      </>
    );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 
 import ErrorPopUp from "./components/ErrorPopUp";
@@ -11,6 +11,7 @@ import { Cards } from "./components/Cards";
 import testIcon from "./png/001-help.png";
 import AddNewWord from "./components/AddNewWord";
 import { findAllByTestId } from "@testing-library/dom";
+import PopUp from "./components/PopUp";
 
 function App() {
    const quotes = [
@@ -162,6 +163,10 @@ function App() {
 
    //Generate random word number
 
+   useEffect(() => {
+      randomNumber();
+   }, []);
+
    const randomNumber = () => {
       setNumber((number) => Math.floor(Math.random() * words.length));
    };
@@ -179,7 +184,7 @@ function App() {
    const [isStarted, setIsStarted] = useState(false);
    const [isEnglish, setIsEnglish] = useState(true);
    const [isSpanish, setIsSpanish] = useState(false);
-   const [nightMode, setNightMode] = useState(false);
+
    const [input, setInput] = useState("");
    const [number, setNumber] = useState(0);
    //Single Word State
@@ -322,13 +327,6 @@ function App() {
          addWordToArray(input, word2);
          setInput((input) => "");
       } else if (
-         e.target.alt === "Night Mode" ||
-         e.target.innerHTML === "Night Mode"
-      ) {
-         nightModeSwitch();
-         console.log(nightMode);
-         console.log(e);
-      } else if (
          e.target.alt === "Add Word" ||
          e.target.innerHTML === "Add Word"
       ) {
@@ -340,12 +338,6 @@ function App() {
       randomNumber();
       generateNewWord();
       setSkipped((skipped) => skipped + 1);
-   };
-
-   const nightModeSwitch = () => {
-      setNightMode((nightMode) => !nightMode);
-      if (nightMode === true) {
-      }
    };
 
    const startApp = () => {
@@ -391,17 +383,11 @@ function App() {
    };
 
    return (
-      <div className={nightMode ? "app maincolor" : `app`}>
-         <div className={flag ? "popup" : "popdown "}>
-            <h1>Please, write the translation</h1>
-         </div>
-
-         <Header
-            quote={quotes[quote]}
-            className={nightMode ? "maincolor" : null}
-         />
-         <div className={nightMode ? "circle1 night" : "circle1"}></div>
-         <div className={nightMode ? "circle2 night" : "circle2"}></div>
+      <div className='app'>
+         <div className='circle1'></div>
+         <div className='circle2'></div>
+         <PopUp flag={flag} />
+         <Header quote={quotes[quote]} />
          <Header />
          <AddNewWord
             add={add}
@@ -444,7 +430,7 @@ function App() {
                   />
                   <div className='submit'>
                      <button className='button' onClick={startApp}>
-                        {isStarted ? "Check Translation" : "Start"}
+                        {isStarted ? "Check" : "Start"}
                      </button>
                   </div>
                </section>

@@ -26,6 +26,10 @@ main {
    align-items: center;
    flex-direction: row;
 }
+
+nav {
+   height: 100%;
+}
 .section1 {
    display: flex;
    justify-content: space-around;
@@ -35,7 +39,7 @@ main {
    height: 100%;
 }
 .show {
-   display: block;
+   display: flex;
 }
 
 .section3 {
@@ -83,6 +87,8 @@ main {
    border-radius: 50%;
 }
 
+/* Circles */
+
 .circle1 {
    height: 20rem;
    width: 20rem;
@@ -101,121 +107,109 @@ main {
    z-index: -1;
 }
 
-.circle1.night,
-.circle2.night {
-   background-color: rgb(134, 74, 255);
-}
-
-.maincolor {
-   height: 100vh;
-   background-color: black;
-   color: white;
-}
-
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
    main {
-      height: 180vh;
-      flex-direction: column;
-   }
-
-   .section1 {
-      position: absolute;
-      top: -5%;
-      margin-top: 4rem;
-      width: 120%;
-      height: 70vh;
+      height: 100vh;
       justify-content: space-between;
       flex-direction: column;
+   }
+
+   /* Main Containers */
+
+   main .section1 {
+      height: 1%;
       z-index: 2;
    }
-
-   .open {
-      display: block;
-      font-size: 3rem;
-      color: #333;
-      font-weight: 900;
-      position: absolute;
-      top: 60%;
-      left: 47%;
-   }
-
-   ul {
-      display: none;
-      margin-top: 2rem;
-      width: 100%;
-      height: 70%;
-   }
-
-   nav {
-      margin-top: 2rem;
-
-      flex-direction: column;
-      justify-content: space-evenly;
-      width: 70%;
-      height: 80vh;
-   }
-
-   li {
-      width: 80%;
-      height: 5vh;
-      margin: 0.4rem auto;
-   }
-
    main .section2 {
       position: absolute;
-      top: 55%;
-      left: 30;
-      height: 70vh;
-      width: 80%;
-      flex-direction: row;
+      top: 8%;
+      right: 0;
+      height: 90%;
+      width: 35%;
    }
-
-   .section2 .boards {
-      height: 50vh;
-      max-height: 40vh;
-   }
-
-   .section2 .panel {
-      order: 2;
-      height: 100%;
-   }
-
-   .section3 {
+   main .section3 {
       order: 1;
-      width: 100%;
-      height: 50%;
+      width: 65%;
+      height: 70%;
       flex-direction: column;
       position: absolute;
-      top: 10%;
+      top: 15%;
       left: 0;
    }
 
-   .section3 .words {
-      flex-direction: column;
-      width: 100%;
-      margin-bottom: 3rem;
-   }
+   /* Navigation and Logo */
 
-   .flag img {
-      width: 10vh;
-      height: 10vh;
-   }
    header.quote h1 {
       display: none;
    }
 
-   button.button {
-      width: 60%;
+   nav {
+      flex-direction: column;
+      justify-content: space-evenly;
+      width: 30%;
+      height: 10%;
    }
 
    .logo {
       position: absolute;
       top: 0;
       left: 0;
+      height: 10%;
+   }
+   .open {
+      display: block;
+      font-size: 3rem;
+      color: #333;
+      font-weight: 900;
    }
 
-   .section1 ul {
-      border: 2px solid white;
-      background-color: white;
+   ul {
+      display: none;
+      z-index: 100;
+   }
+
+   .flag img {
+      width: 6vh;
+      height: 6vh;
+   }
+
+   .lang {
+      font-size: 1.6rem;
+   }
+
+   button.button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 80%;
+      height: 50%;
+      font-size: 1rem;
+      font-weight: 800;
+   }
+
+   /* Flag */
+
+   .section2 .icon .png {
+      width: 100%;
+      height: 40%;
+   }
+
+   /* Card */
+
+   .card1 {
+      width: 90%;
+   }
+
+   /* Circles */
+
+   .circle1 {
+      height: 300px;
+      width: 300px;
+   }
+   .circle2 {
+      left: -20%;
+      top: 40%;
+      height: 500px;
+      width: 500px;
    }
 }
