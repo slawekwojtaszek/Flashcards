@@ -59,52 +59,91 @@ img {
    transition: 0.2s ease-in;
 }
 
-a {
+ul a {
+   font-family: "Poppins", sans-serif;
    display: flex;
    align-items: center;
    justify-content: center;
    margin: 1rem auto;
-   padding: 0.4rem;
-   width: 75%;
+   width: 80%;
+   height: 10%;
    list-style: none;
-   font-size: 1.1rem;
+   font-size: 0.9rem;
    text-decoration: none;
    text-align: center;
    color: white;
-   background-color: #67a8fc;
+   border: 2px solid black;
+   /* box-shadow: 0 4px 5px 1px #ffa3cb; */
+   border-radius: 10px;
+   background-color: black;
+   font-weight: 900;
+   cursor: pointer;
+   transition: 0.4s;
+}
 
-   border-radius: 5px;
+a:hover {
+   transform: scale(1.05);
+   color: white;
+}
+
+.logo-container a {
+   color: black;
+   font-family: "Poppins", sans-serif;
+   text-decoration: none;
+   background-color: transparent;
+   box-shadow: none;
 }
 .open {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 50px;
+   height: 50px;
+   border: 2px solid black;
+   background-color: black;
    display: none;
+   border-radius: 50%;
+}
+
+.open-inside {
+   height: 100%;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: white;
 }
 
 .mobile {
    display: none;
-   position: fixed;
-   top: 11vh;
+   position: absolute;
+   top: 10vh;
    right: 0;
-   width: 18vh;
-   height: 90vh;
-   background-color: red;
+   width: 17vh;
+   height: 87vh;
+   background-color: #fff;
+   border-radius: 10px;
 }
 
 .mobile.show {
    display: block;
 }
 
-@media screen and (min-width: 980px) and (max-width: 1199px) {
+@media screen and (min-width: 880px) {
    .logo {
-      font-size: 1rem;
+      font-size: 0.8rem;
+   }
+   .mobile {
+      width: 28vh;
    }
 }
-@media screen and (min-width: 680px) and (max-width: 1000px) {
+@media screen and (min-width: 980px) {
    .logo {
-      font-size: 1.4rem;
+      font-size: 1.1rem;
    }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1100px) {
    .mobile.show {
       display: none;
    }

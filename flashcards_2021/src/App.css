@@ -10,6 +10,47 @@
    box-sizing: border-box;
 }
 
+.alert {
+   display: none;
+   justify-content: center;
+   align-items: center;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   width: 80%;
+   height: 50%;
+   transform: translate(-50%, -50%);
+   background-color: rgb(21, 249, 56);
+   font-weight: 700;
+   border-radius: 10px;
+   z-index: 100;
+}
+
+.alert p {
+   text-align: center;
+   font-size: 2rem;
+   color: white;
+}
+
+.alert.show {
+   display: flex;
+}
+
+.help {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   position: absolute;
+   transform: translate(-50%, -50%);
+   top: 50%;
+   left: 50%;
+   width: 80%;
+   height: 50%;
+   background-color: red;
+   z-index: 1000;
+}
+
 body {
    position: relative;
    font-family: "Kanit", sans-serif;
@@ -109,7 +150,6 @@ nav {
 
 @media screen and (max-width: 1000px) {
    main {
-      height: 100vh;
       justify-content: space-between;
       flex-direction: column;
    }
@@ -137,6 +177,9 @@ nav {
       left: 0;
    }
 
+   a {
+      height: 10%;
+   }
    /* Navigation and Logo */
 
    header.quote h1 {

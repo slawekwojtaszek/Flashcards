@@ -99,66 +99,66 @@ function App() {
          id: 10,
          icon: "./png/008-fire.png",
       },
-      {
-         es: "arbol",
-         en: "tree",
-         id: 11,
-         icon: "./png/003-tree.png",
-      },
-      {
-         es: "agua",
-         en: "water",
-         id: 12,
-         icon: "./png/007-drop.png",
-      },
-      {
-         es: "bicicleta",
-         en: "bike",
-         id: 13,
-         icon: "./png/002-bicycle.png",
-      },
-      {
-         es: "cohete",
-         en: "rocket",
-         id: 14,
-         icon: "./png/001-rocket.png",
-      },
-      {
-         es: "nevera",
-         en: "fridge",
-         id: 15,
-         icon: "./png/004-fridge.png",
-      },
-      {
-         es: "madera",
-         en: "wood",
-         id: 16,
-         icon: "./png/002-wood.png",
-      },
-      {
-         es: "amor",
-         en: "love",
-         id: 17,
-         icon: "./png/006-love.png",
-      },
-      {
-         es: "telefono",
-         en: "phone",
-         id: 18,
-         icon: "./png/005-smartphone.png",
-      },
-      {
-         es: "avion",
-         en: "plane",
-         id: 19,
-         icon: "./png/007-travelling.png",
-      },
-      {
-         es: "dinero",
-         en: "money",
-         id: 20,
-         icon: "./png/003-money.png",
-      },
+      // {
+      //    es: "arbol",
+      //    en: "tree",
+      //    id: 11,
+      //    icon: "./png/003-tree.png",
+      // },
+      // {
+      //    es: "agua",
+      //    en: "water",
+      //    id: 12,
+      //    icon: "./png/007-drop.png",
+      // },
+      // {
+      //    es: "bicicleta",
+      //    en: "bike",
+      //    id: 13,
+      //    icon: "./png/002-bicycle.png",
+      // },
+      // {
+      //    es: "cohete",
+      //    en: "rocket",
+      //    id: 14,
+      //    icon: "./png/001-rocket.png",
+      // },
+      // {
+      //    es: "nevera",
+      //    en: "fridge",
+      //    id: 15,
+      //    icon: "./png/004-fridge.png",
+      // },
+      // {
+      //    es: "madera",
+      //    en: "wood",
+      //    id: 16,
+      //    icon: "./png/002-wood.png",
+      // },
+      // {
+      //    es: "amor",
+      //    en: "love",
+      //    id: 17,
+      //    icon: "./png/006-love.png",
+      // },
+      // {
+      //    es: "telefono",
+      //    en: "phone",
+      //    id: 18,
+      //    icon: "./png/005-smartphone.png",
+      // },
+      // {
+      //    es: "avion",
+      //    en: "plane",
+      //    id: 19,
+      //    icon: "./png/007-travelling.png",
+      // },
+      // {
+      //    es: "dinero",
+      //    en: "money",
+      //    id: 20,
+      //    icon: "./png/003-money.png",
+      // },
    ]);
 
    //Generate random word number
@@ -196,6 +196,8 @@ function App() {
    const [newEnglish, setNewEnglish] = useState("");
    const [newSpanish, setNewSpanish] = useState("");
    const [add, setAdd] = useState(false);
+
+   const [isHelpOpen, setIsHelpOpen] = useState(false);
    //Boards Array States
    const [good, setGood] = useState([]);
    const [bad, setBad] = useState([]);
@@ -228,6 +230,13 @@ function App() {
             icon: testIcon,
             id: nmb,
          };
+         // setInterval(() => {
+         //    alert("word added");
+         // }, 2000);
+         document.querySelector(".alert").classList.add("show");
+         setInterval(() => {
+            document.querySelector(".alert").classList.remove("show");
+         }, 1500);
          return words.push(obj);
       }
    };
@@ -331,6 +340,8 @@ function App() {
          e.target.innerHTML === "Add Word"
       ) {
          setAdd((add) => !add);
+      } else if (e.target.alt === "Help" || e.target.innerHTML === "Help") {
+         setIsHelpOpen(true);
       }
    };
 
@@ -384,6 +395,16 @@ function App() {
 
    return (
       <div className='app'>
+         {isHelpOpen ? (
+            <div className='help'>
+               <h1 onClick={() => setIsHelpOpen(false)}>X</h1>
+               <h2>eloooo</h2>
+            </div>
+         ) : null}
+
+         <div className='alert'>
+            <p>The words have been successfully added</p>{" "}
+         </div>
          <div className='circle1'></div>
          <div className='circle2'></div>
          <PopUp flag={flag} />

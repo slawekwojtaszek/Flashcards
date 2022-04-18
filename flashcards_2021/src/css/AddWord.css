@@ -2,7 +2,7 @@
 
 .add {
    position: absolute;
-   top: 60%;
+   top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
    display: flex;
@@ -10,8 +10,9 @@
    align-items: center;
    width: 80%;
    justify-content: space-between;
-   background: #549ef9;
-   border-radius: 7px;
+   background: white;
+   border-radius: 10px;
+   box-shadow: 0 0 50px 10px rgb(195, 195, 195);
    z-index: 100;
 }
 
@@ -62,19 +63,18 @@
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   font-size: 0.7rem;
-   color: white;
+   color: black;
    font-weight: 700;
-   text-transform: uppercase;
 }
 
 .add .title h1 {
-   font-size: 2rem;
+   font-size: 2.5rem;
    margin-bottom: 1rem;
 }
 .add .title p {
-   color: white;
-   font-size: 0.5rem;
+   text-align: center;
+   color: black;
+   font-size: 1rem;
 }
 
 .add .footer {
@@ -88,8 +88,8 @@
 
 .add .footer p {
    text-align: center;
-   color: white;
-   font-weight: 300;
+   color: rgb(122, 122, 122);
+   font-weight: 500;
    font-size: 1rem;
    height: 40%;
    width: 70%;
@@ -112,17 +112,17 @@
 .add .header .inp1 p,
 .add .header .inp2 p {
    margin: 0.5rem;
-   color: white;
-   font-size: 1rem;
+   color: black;
+   font-size: 1.5rem;
    font-weight: 700;
 }
 
 .add .header .inp1 input,
 .add .header .inp2 input {
-   border: 1px solid white;
+   border: 1px solid rgb(122, 122, 122);
    height: 30px;
    width: 100%;
-   border-radius: 3px;
+   border-radius: 7px;
 }
 
 .add .header .inp2 input:focus,
@@ -138,22 +138,23 @@
 }
 
 .x {
-   color: white;
+   color: black;
 }
 
 .add.off {
    display: none;
 }
 
-@media screen and (min-width: 1080px) {
+@media screen and (min-width: 780px) {
    .add {
       max-width: 400px;
       margin: 0 auto;
    }
 }
 
-@media screen and (max-width: 680px) {
+@media screen and (min-width: 980px) {
    .add {
-      top: 50%;
+      max-width: 500px;
+      margin: 0 auto;
    }
 }
