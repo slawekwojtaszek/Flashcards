@@ -20,8 +20,8 @@ function Menu({ handleClick, isOpen }) {
          </div>
          <MenuMobile isOpen={isOpen} handleClick={handleClick} />
          <ul className='glass2'>
-            <MenuElement handleClick={handleClick} text='English' />
-            <MenuElement handleClick={handleClick} text='Spanish' />
+            <MenuElement handleClick={handleClick} text='ESP -> ENG' />
+            <MenuElement handleClick={handleClick} text='ENG -> ESP' />
             <MenuElement
                icon={Spain}
                handleClick={handleClick}

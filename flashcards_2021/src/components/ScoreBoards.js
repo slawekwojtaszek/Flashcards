@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/ScorePanel.css";
 import { ScoreBoard } from "./ScoreBoard";
+import Eye from "../png/eye.png";
 
 export const ScoreBoards = ({
    icon,
@@ -13,6 +14,12 @@ export const ScoreBoards = ({
    wrongWords,
    skip,
 }) => {
+   const [isIcon, setisIcon] = useState(false);
+
+   const handleIcon = () => {
+      console.log("elo");
+      setisIcon((isIcon) => !isIcon);
+   };
    return (
       <>
          <section className='panel glass'>
@@ -45,8 +52,16 @@ export const ScoreBoards = ({
                   <input type='text' />
                   <button></button>
                </div> */}
-               <div className='png'>
-                  {isStarted ? <img src={icon} alt='' /> : null}
+
+               <div className='png' onClick={handleIcon}>
+                  {isIcon ? (
+                     <> {isStarted ? <img src={icon} alt='' /> : null} </>
+                  ) : (
+                     <>
+                        <h1>click to see the hint</h1>
+                        <img src={Eye} alt='' />
+                     </>
+                  )}
                </div>
             </div>
          </section>

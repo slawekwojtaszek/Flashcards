@@ -10,7 +10,7 @@
    align-items: center;
    width: 80%;
    justify-content: space-between;
-   background: white;
+
    border-radius: 10px;
    box-shadow: 0 0 50px 10px rgb(195, 195, 195);
    z-index: 100;
@@ -20,20 +20,21 @@
    width: 70%;
    margin: 1rem;
    font-size: 1rem;
+   font-weight: 700;
    border-radius: 7px;
    padding: 1rem 2rem;
    border: none;
    text-decoration: none;
    background: #0069ed;
-   border: 1px solid white;
    color: #ffffff;
    font-family: sans-serif;
    cursor: pointer;
+   transition: 0.3s;
 }
 
 .add button:hover {
-   color: black;
-   background-color: greenyellow;
+   color: white;
+   background-color: #0154b9;
 }
 
 .add .form {
@@ -88,11 +89,12 @@
 
 .add .footer p {
    text-align: center;
-   color: rgb(122, 122, 122);
-   font-weight: 500;
-   font-size: 1rem;
+   font-style: italic;
+   color: rgb(9, 9, 9);
+   font-weight: 300;
+   font-size: 0.9rem;
    height: 40%;
-   width: 70%;
+   width: 50%;
 }
 
 .add .header .inp1,
@@ -119,15 +121,11 @@
 
 .add .header .inp1 input,
 .add .header .inp2 input {
-   border: 1px solid rgb(122, 122, 122);
-   height: 30px;
+   border: 1px solid rgb(200, 200, 200);
+   height: 40px;
    width: 100%;
-   border-radius: 7px;
-}
-
-.add .header .inp2 input:focus,
-.add .header .inp1 input:focus {
-   border: 3px solid red;
+   border-radius: 5px;
+   font-size: 1.5rem;
 }
 
 .add .top span {

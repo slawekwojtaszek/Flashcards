@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "../css/AddWord.css";
 
 function AddNewWord({
-   add,
+   isAddWordOpen,
    addFunction,
    handleEnglish,
    newEnglish,
@@ -11,12 +11,12 @@ function AddNewWord({
    handleAddNewWord,
 }) {
    return (
-      <div className={add ? "add " : "add off"}>
+      <div className={isAddWordOpen ? "add glass3 " : "add off"}>
          <div className='top'>
             <div className='x'>
                <span
                   onClick={() => {
-                     addFunction((add) => !add);
+                     addFunction((isAddWordOpen) => !isAddWordOpen);
                   }}>
                   X
                </span>

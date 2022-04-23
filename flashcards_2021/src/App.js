@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 
-import ErrorPopUp from "./components/ErrorPopUp";
 import Menu from "./components/Menu";
 import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
-import { Word } from "./components/Word";
 import { ScoreBoards } from "./components/ScoreBoards";
 import { Cards } from "./components/Cards";
 import testIcon from "./png/001-help.png";
 import AddNewWord from "./components/AddNewWord";
-import { findAllByTestId } from "@testing-library/dom";
 import PopUp from "./components/PopUp";
 
 function App() {
+   //All the words and quotes arrays
+
    const quotes = [
       "The limits of my language mean the limits of my world.",
       "He who knows no foreign languages knows nothing of his own.",
@@ -162,19 +160,17 @@ function App() {
    ]);
 
    //Generate random word number
-
    useEffect(() => {
-      randomNumber();
+      startApp();
    }, []);
 
-   const randomNumber = () => {
+   //Generate word and quote number
+   const generateRandomNumber = () => {
       setNumber((number) => Math.floor(Math.random() * words.length));
-   };
-
-   const quoteNumber = () => {
       setQuote((quote) => Math.floor(Math.random() * quotes.length));
    };
 
+   //Change first letter
    const capitalizeFirstLetter = (string) => {
       return string.charAt(0).toUpperCase() + string.slice(1);
    };
@@ -184,31 +180,33 @@ function App() {
    const [isStarted, setIsStarted] = useState(false);
    const [isEnglish, setIsEnglish] = useState(true);
    const [isSpanish, setIsSpanish] = useState(false);
-
    const [input, setInput] = useState("");
    const [number, setNumber] = useState(0);
+
    //Single Word State
    const [word, setWord] = useState();
    const [word2, setWord2] = useState("");
    const [icon, setIcon] = useState();
    const [quote, setQuote] = useState(0);
+
    //Add New Word States
    const [newEnglish, setNewEnglish] = useState("");
    const [newSpanish, setNewSpanish] = useState("");
-   const [add, setAdd] = useState(false);
-
+   const [isAddWordOpen, setisAddWordOpen] = useState(false);
    const [isHelpOpen, setIsHelpOpen] = useState(false);
+
    //Boards Array States
    const [good, setGood] = useState([]);
    const [bad, setBad] = useState([]);
    const [skip, setSkip] = useState([]);
+
    //Points States
    const [correct, setCorrect] = useState(0);
    const [skipped, setSkipped] = useState(0);
    const [wrong, setWrong] = useState(0);
    const [flag, setFlag] = useState(false);
 
-   //Functions
+   //Generate new word
    const generateNewWord = () => {
       if (isEnglish) {
          setWord((word) => words[number].es);
@@ -220,23 +218,21 @@ function App() {
          setIcon((icon) => words[number].icon);
       }
    };
-
+   //Add new word to main array function
    const addWord = (en, es) => {
       if (en !== "" && es !== "") {
-         const nmb = Math.floor(Math.random() * 10000);
+         const nmb = words.length + 1;
          const obj = {
             en: en,
             es: es,
-            icon: testIcon,
             id: nmb,
+            icon: testIcon,
          };
-         // setInterval(() => {
-         //    alert("word added");
-         // }, 2000);
+
          document.querySelector(".alert").classList.add("show");
          setInterval(() => {
             document.querySelector(".alert").classList.remove("show");
-         }, 1500);
+         }, 1000);
          return words.push(obj);
       }
    };
@@ -251,26 +247,23 @@ function App() {
       let myInput = e.target.value;
       myInput = myInput.toLowerCase();
       setNewEnglish((input) => myInput);
-      console.log(myInput + "to jest ang");
    };
 
    const handleNewWordSpanish = (e) => {
       let myInput = e.target.value;
       myInput = myInput.toLowerCase();
       setNewSpanish((input) => myInput);
-      console.log(myInput + "to jest span");
    };
 
    const handleAddNewWord = (en, es) => {
       addWord(newEnglish, newSpanish);
       setNewEnglish((newEnglish) => "");
       setNewSpanish((newSpanish) => "");
-      setAdd((add) => !add);
-      console.log((newEnglish, newSpanish));
+      setisAddWordOpen((isAddWordOpen) => !isAddWordOpen);
    };
 
    const setAddFunction = () => {
-      setAdd((add) => !add);
+      setisAddWordOpen((isAddWordOpen) => !isAddWordOpen);
    };
 
    const changeFlag = () => {
@@ -319,13 +312,13 @@ function App() {
    const handleMenuClick = (e) => {
       setisOpen((isOpen) => !isOpen);
       if (
-         (e.target.alt === "English" && isStarted === true) ||
-         (e.target.text === "English" && isStarted === true)
+         (e.target.alt === "ESP -> ENG" && isStarted === true) ||
+         (e.target.text === "ESP -> ENG" && isStarted === true)
       ) {
          changeToEnglish();
       } else if (
-         (e.target.alt === "Spanish" && isStarted === true) ||
-         (e.target.text === "Spanish" && isStarted === true)
+         (e.target.alt === "ENG -> ESP" && isStarted === true) ||
+         (e.target.text === "ENG -> ESP" && isStarted === true)
       ) {
          changeToSpanish();
       } else if (
@@ -339,17 +332,19 @@ function App() {
          e.target.alt === "Add Word" ||
          e.target.innerHTML === "Add Word"
       ) {
-         setAdd((add) => !add);
+         setisAddWordOpen((isAddWordOpen) => !isAddWordOpen);
       } else if (e.target.alt === "Help" || e.target.innerHTML === "Help") {
          setIsHelpOpen(true);
       }
    };
 
    const skipWord = () => {
-      randomNumber();
+      generateRandomNumber();
       generateNewWord();
       setSkipped((skipped) => skipped + 1);
    };
+
+   //Main function
 
    const startApp = () => {
       setIsStarted((isStarted) => true);
@@ -358,16 +353,16 @@ function App() {
          if (input === "") {
             generateNewWord();
             changeFlag();
-            randomNumber();
+            generateRandomNumber();
          } else if (input === word2) {
             addWordToArray(input, word2);
             generateNewWord();
-            randomNumber();
+            generateRandomNumber();
             setCorrect((correct) => correct + 1);
          } else if (input !== word2) {
             addWordToArray(input, word2);
             generateNewWord();
-            randomNumber();
+            generateRandomNumber();
             setWrong((wrong) => wrong + 1);
          }
       }
@@ -376,42 +371,29 @@ function App() {
          if (input === "") {
             generateNewWord();
             changeFlag();
-            randomNumber();
+            generateRandomNumber();
          } else if (input === word2) {
             addWordToArray(input, word2);
             generateNewWord();
-            randomNumber();
+            generateRandomNumber();
             setCorrect((correct) => correct + 1);
          } else if (input !== word2) {
             addWordToArray(input, word2);
             generateNewWord();
-            randomNumber();
+            generateRandomNumber();
             setWrong((wrong) => wrong + 1);
          }
       }
       setInput((input) => "");
-      quoteNumber();
    };
 
    return (
-      <div className='app'>
-         {isHelpOpen ? (
-            <div className='help'>
-               <h1 onClick={() => setIsHelpOpen(false)}>X</h1>
-               <h2>eloooo</h2>
-            </div>
-         ) : null}
-
-         <div className='alert'>
-            <p>The words have been successfully added</p>{" "}
-         </div>
-         <div className='circle1'></div>
-         <div className='circle2'></div>
+      <>
          <PopUp flag={flag} />
          <Header quote={quotes[quote]} />
-         <Header />
+
          <AddNewWord
-            add={add}
+            isAddWordOpen={isAddWordOpen}
             addFunction={setAddFunction}
             handleEnglish={handleNewWordEnglish}
             newEnglish={newEnglish}
@@ -451,14 +433,24 @@ function App() {
                   />
                   <div className='submit'>
                      <button className='button' onClick={startApp}>
-                        {isStarted ? "Check" : "Start"}
+                        Check
                      </button>
                   </div>
                </section>
             </div>
          </main>
-         {/* <Footer /> */}
-      </div>
+         {isHelpOpen ? (
+            <div className='help'>
+               <h1 onClick={() => setIsHelpOpen(false)}>X</h1>
+               <h2>eloooo</h2>
+            </div>
+         ) : null}
+         <div className='alert'>
+            <p>The words have been successfully added</p>{" "}
+         </div>
+         <div className='circle1'></div>
+         <div className='circle2'></div>
+      </>
    );
 }
 
